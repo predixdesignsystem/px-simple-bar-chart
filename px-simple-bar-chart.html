@@ -82,6 +82,17 @@ A simple bar chart that visualizes series data.
                 value: function() {
                     return defaultColors;
                 }
+            },
+
+            /**
+            * legendOrder
+            *
+            * Format: string
+            */
+            legendOrder: {
+                type: String,
+                observer: '_drawChart',
+                value: 'reverse'
             }
         },
 
@@ -175,56 +186,67 @@ A simple bar chart that visualizes series data.
             };
         },
 
+        _drawLegendItem: function(i, cumulative) {
+            var series = this.chartData[i];
+            var squareSize = 10;
+            var margin = 5;
+            var seriesTotal = this._getSeriesTotal(series);
+            if(this.legendLabels.length > i) {
+                var labelText = this.legendLabels[i];
+            } else {
+                var labelText = seriesTotal;
+            };
+            var textWidth = this._calculateTextWidth(labelText, "legend-text");
+            var fullWidth = squareSize + margin + textWidth;
+            var endPosition = fullWidth + cumulative.x;
+            var color = this._getColor(i);
+            if(endPosition >= this.chartWidth) {
+                cumulative.y += 20;
+                cumulative.x = 0;
+            };
+            var rectNode = this.svg
+                .append("rect")
+                .attr("class", "legend-box")
+                .attr("x", cumulative.x)
+                .attr("y", cumulative.y)
+                .attr("width", squareSize)
+                .attr("height", squareSize)
+                .attr("fill", color);
+            cumulative.x += squareSize + margin;
+            var textNode = this.svg
+                .append("text")
+                .attr("class", "legend-text")
+                .attr("x", cumulative.x)
+                .attr("y", cumulative.y + 9)
+                .text(labelText);
+            cumulative.x += Math.round(textWidth + (margin * 3));
+            return {
+                x: cumulative.x,
+                y: cumulative.y
+            };
+        },
+
         _drawLegend: function(dryRun) {
             // TODO: Clean up this method, it is a bit unruly.
             // dry run is meant to only calculate necessary height of legend
             // track X position as legend is drawn across the top of the chart
-            var cumulativeX = 0;
-            var cumulativeY = 5;
             var dryRun = dryRun || false;
             var dataLength = this.chartData.length;
             var i;
-            for(i=dataLength-1;i>=0;i--) {
-                var series = this.chartData[i];
-                var squareSize = 10;
-                var margin = 5;
-                var seriesTotal = this._getSeriesTotal(series);
-                if(this.legendLabels.length > i) {
-                    var labelText = this.legendLabels[i];
-                } else {
-                    var labelText = seriesTotal;
+            var cumulative = { x: 0, y: 5 };
+            // legend can be ordered in reverse (default), or sequential
+            if(this.legendOrder === 'reverse') {
+                for(i=dataLength-1; i>=0; i--) {
+                    cumulative = this._drawLegendItem(i, cumulative);
                 };
-                var textWidth = this._calculateTextWidth(labelText, "legend-text");
-                var fullWidth = squareSize + margin + textWidth;
-                var endPosition = fullWidth + cumulativeX;
-                var color = this._getColor(i);
-                if(endPosition >= this.chartWidth) {
-                    cumulativeY += 20;
-                    cumulativeX = 0;
+            } else if(this.legendOrder === 'sequential') {
+                for(i=0; i<dataLength; i++) {
+                    cumulative = this._drawLegendItem(i, cumulative);
                 };
-                var rectNode = this.svg
-                    .append("rect")
-                    .attr("class", "legend-box")
-                    .attr("x", cumulativeX)
-                    .attr("y", cumulativeY)
-                    .attr("width", squareSize)
-                    .attr("height", squareSize)
-                    .attr("fill", color);
-                var textNode = this.svg
-                    .append("text")
-                    .attr("class", "legend-text")
-                    .attr("x", cumulativeX += squareSize + margin)
-                    .attr("y", cumulativeY + 9)
-                    .text(labelText);
-                cumulativeX += Math.round(textWidth + (margin * 3));
-                if(dryRun) {
-                    rectNode.remove();
-                    textNode.remove();
-                }
             };
             if(dryRun) {
-                return cumulativeY;
-            }
+                return cumulative.y;
+            };
         },
 
         _drawBars: function() {
