@@ -184,7 +184,7 @@ A simple bar chart that visualizes series data.
             var dryRun = dryRun || false;
             var dataLength = this.chartData.length;
             var i;
-            for(i=dataLength-1;i>=0;i--) {
+            for( i = 0; i <= dataLength-1; i++) {
                 var series = this.chartData[i];
                 var squareSize = 10;
                 var margin = 5;
