@@ -27,7 +27,7 @@ From the component's directory run:
 $ grunt depserve
 ```
 
-Starts a local server. Navigate to the root of that server (e.g. http://localhost:8080/) in a browser to open the API documentation page, with link to the "Demo" / working examples.
+Starts a local server. Navigate to the root of that server (e.g. http://localhost:8082/) in a browser to open the API documentation page, with link to the "Demo" / working examples.
 
 ### Local Development
 
