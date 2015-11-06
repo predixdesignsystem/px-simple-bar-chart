@@ -109,7 +109,7 @@ A simple bar chart that visualizes series data.
                 setSizesPromise.then (function (){
                     that._setScales();
                     that._drawBars();
-                    that._requireLegend() ? this._drawLegend() : false;
+                    // that._requireLegend() ? that._drawLegend() : false;
                     // add css class to svg elements using method from pxD3Util
                     that._addStyleScope(that.svg);
                 });
@@ -142,6 +142,7 @@ A simple bar chart that visualizes series data.
                 that.chartWidth = that.gridWidth * that.gridColumns;
                 that.widthRemainder = that.widthValue % that.gridWidth;
                 if(that._requireLegend()) {
+                    //TODO: refactor to only measure, currently it also draws the legend
                     var legendHeightPromise = that._getLegendHeightPromise();
                     legendHeightPromise.then(function (cumulative){
                         that.legendHeight = cumulative.y + 25;
@@ -252,6 +253,7 @@ A simple bar chart that visualizes series data.
 
         _drawLegend: function(dryRun) {
             // TODO: Clean up this method, it is a bit unruly.
+            // TODO: refactor to only measure or draw
             // dry run is meant to only calculate necessary height of legend
             // track X position as legend is drawn across the top of the chart
             var dryRun = dryRun || false;
