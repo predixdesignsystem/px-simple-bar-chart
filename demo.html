@@ -211,7 +211,7 @@
             <h3>101 Randomly Generated Examples:</h3>
             <br clear="both"/>
 
-            <template is="dom-repeat" is="{{examples}}">
+            <template is="dom-repeat" items="{{examples}}">
                 <div class="description">
                     <strong>Description</strong>
                     <br />
@@ -451,6 +451,7 @@
                     var i;
                     for(i=0;i<100;i++) {
                         examples.push(generateChartConfig(i));
+                        console.log(i);
                     };
                     that.examples = examples;
                 }, 500);
