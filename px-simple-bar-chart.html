@@ -221,7 +221,7 @@ A simple bar chart that visualizes series data.
                     var fullWidth = squareSize + margin + textWidth;
                     var endPosition = fullWidth + cumulative.x;
                     var color = that._getColor(i);
-                    if(endPosition >= this.chartWidth) {
+                    if(endPosition >= that.chartWidth) {
                         cumulative.y += 20;
                         cumulative.x = 0;
                     };
