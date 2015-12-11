@@ -128,9 +128,9 @@ A simple bar chart that visualizes series data.
             // if auto-resize is necessary, set window.onresize listener
             if(this.height === 'auto' || this.width === 'auto') {
                 var that = this;
-                window.onresize = function() {
+                window.addEventListener('resize', function() {
                     that._drawChart();
-                };
+                });
             };
         },
 
@@ -293,7 +293,7 @@ A simple bar chart that visualizes series data.
             });
             this.svg
                 .append("line")
-                .attr("class"," px-simple-bar-chart bar-chart-bottom-line")
+                .attr("class", "px-simple-bar-chart bar-chart-bottom-line")
                 .attr("x1", 0)
                 .attr("y1", this.heightValue)
                 .attr("x2", this.chartWidth)
