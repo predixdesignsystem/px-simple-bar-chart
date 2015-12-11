@@ -121,19 +121,6 @@ A simple bar chart that visualizes series data.
             }
         },
 
-        _setDimensions: function() {
-            // capture dimensions using pxChartDimensionsBehavior
-            this.widthValue = this._reconcileWidth(this.width);
-            this.heightValue = this._reconcileHeight(this.height);
-            // if auto-resize is necessary, set window.onresize listener
-            if(this.height === 'auto' || this.width === 'auto') {
-                var that = this;
-                window.addEventListener('resize', function() {
-                    that._drawChart();
-                });
-            };
-        },
-
         _getSetSizesPromise: function() {
             var that = this;
             return new Promise (function (resolve, reject){
