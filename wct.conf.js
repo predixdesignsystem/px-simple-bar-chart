@@ -9,6 +9,6 @@ module.exports = {
         }
     },
     suites: [
-      'test/px-simple-bar-chart-firsttest.html'
+      'test/px-simple-bar-chart-tests.html'
     ]
 };
