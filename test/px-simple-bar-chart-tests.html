@@ -38,7 +38,6 @@
    done();
    },1000);
 
-
  });
 
  test('fixture height is 150', function(done) {
@@ -61,9 +60,27 @@
    done();
    },1000);
 
+ });
+
+ test('fixture1 SVG element has default width', function(done) {
+   var fixture = document.getElementById("fixture1");
+
+   setTimeout(function(){
+   assert.equal(getComputedStyle(fixture.querySelector('svg')).width,"285px");
+   done();
+   },1000);
 
  });
 
+ test('fixture1 SVG element has default height', function(done) {
+   var fixture = document.getElementById("fixture1");
+
+   setTimeout(function(){
+   assert.equal(getComputedStyle(fixture.querySelector('svg')).height,"150px");
+   done();
+   },1000);
+
+ });
 
   </script>
 
