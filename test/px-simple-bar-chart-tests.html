@@ -15,12 +15,6 @@
    <body>
 
 
-
-
-<!--
-                   <px-simple-bar-chart id="fixture1" width="auto" height="auto"></px-simple-bar-chart>
- -->
-
  <px-simple-bar-chart id="fixture1" chart-data="[ [1,2,3] ]">
 </px-simple-bar-chart>
 
@@ -86,18 +80,6 @@
 
  });
 
- // test('fixture3 count all rectangle in chart equals the data array', function(done) {
- //   var fixture = document.getElementById("fixture3");
- //   var svg = fixture.querySelector('svg');
- //  //  var rectangleAll = svg.querySelector('rect');
- //
- //   setTimeout(function(){
- //   assert.equal(svg.querySelectorAll('rect').length,"40");
- //   done();
- //   },1000);
- //
- // });
-
  test('fixture3 count all rectangle in chart equals the data array', function(done) {
    var fixture = document.getElementById("fixture3");
    var svg = fixture.querySelector('svg');
@@ -114,7 +96,7 @@
    var svg = fixture.querySelector('svg');
    var rect = svg.querySelectorAll('rect');
    var is_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
-  //  setTimeout(function(){
+
     if(!is_chrome)
     {
       setTimeout(function(){
