@@ -44,48 +44,48 @@
 
  });
 
- // test('fixture height is 150', function(done) {
- //   var fixture = document.getElementById("fixture1");
- //
- //   setTimeout(function(){
- //
- //  assert.equal(getComputedStyle(fixture.querySelector('svg')).height,"150px");
- //   done();
- //   },1000);
- //
- // });
- //
- // test('fixture2 height is 200', function(done) {
- //   var fixture = document.getElementById("fixture2");
- //
- //   setTimeout(function(){
- //
- //  assert.equal(getComputedStyle(fixture.querySelector('svg')).height,"200px");
- //   done();
- //   },1000);
- //
- // });
- //
- // test('fixture1 SVG element has default width', function(done) {
- //   var fixture = document.getElementById("fixture1");
- //
- //   setTimeout(function(){
- //   assert.equal(getComputedStyle(fixture.querySelector('svg')).width,"285px");
- //   done();
- //   },1000);
- //
- // });
- //
- // test('fixture1 SVG element has default height', function(done) {
- //   var fixture = document.getElementById("fixture1");
- //
- //   setTimeout(function(){
- //   assert.equal(getComputedStyle(fixture.querySelector('svg')).height,"150px");
- //   done();
- //   },1000);
- //
- // });
- //
+ test('fixture height is 150', function(done) {
+   var fixture = document.getElementById("fixture1");
+
+   setTimeout(function(){
+
+  assert.equal(getComputedStyle(fixture.querySelector('svg')).height,"150px");
+   done();
+   },1000);
+
+ });
+
+ test('fixture2 height is 200', function(done) {
+   var fixture = document.getElementById("fixture2");
+
+   setTimeout(function(){
+
+  assert.equal(getComputedStyle(fixture.querySelector('svg')).height,"200px");
+   done();
+   },1000);
+
+ });
+
+ test('fixture1 SVG element has default width', function(done) {
+   var fixture = document.getElementById("fixture1");
+
+   setTimeout(function(){
+   assert.equal(getComputedStyle(fixture.querySelector('svg')).width,"285px");
+   done();
+   },1000);
+
+ });
+
+ test('fixture1 SVG element has default height', function(done) {
+   var fixture = document.getElementById("fixture1");
+
+   setTimeout(function(){
+   assert.equal(getComputedStyle(fixture.querySelector('svg')).height,"150px");
+   done();
+   },1000);
+
+ });
+
  // test('fixture3 count all rectangle in chart equals the data array', function(done) {
  //   var fixture = document.getElementById("fixture3");
  //   var svg = fixture.querySelector('svg');
@@ -97,32 +97,44 @@
  //   },1000);
  //
  // });
- //
- // test('fixture3 count all rectangle in chart equals the data array', function(done) {
- //   var fixture = document.getElementById("fixture3");
- //   var svg = fixture.querySelector('svg');
- //
- //   setTimeout(function(){
- //   assert.equal(svg.querySelectorAll('rect').length,"40");
- //   done();
- //   },1000);
- //
- // });
+
+ test('fixture3 count all rectangle in chart equals the data array', function(done) {
+   var fixture = document.getElementById("fixture3");
+   var svg = fixture.querySelector('svg');
+
+   setTimeout(function(){
+   assert.equal(svg.querySelectorAll('rect').length,"40");
+   done();
+   },1000);
+
+ });
 
  test('fixture3 colors of chart should match default colors', function(done) {
    var fixture = document.getElementById("fixture3");
    var svg = fixture.querySelector('svg');
    var rect = svg.querySelectorAll('rect');
-
-   setTimeout(function(){
-  //  assert.equal(svg.querySelectorAll('rect').length,"40");
-   assert.equal(getComputedStyle(svg.querySelectorAll('rect')[0]).fill,"rgb(93, 165, 218)");
-   assert.equal(getComputedStyle(svg.querySelectorAll('rect')[7]).fill,"rgb(250, 164, 58)");
-   assert.equal(getComputedStyle(svg.querySelectorAll('rect')[14]).fill,"rgb(96, 189, 104)");
-   assert.equal(getComputedStyle(svg.querySelectorAll('rect')[21]).fill,"rgb(241, 124, 176)");
-   assert.equal(getComputedStyle(svg.querySelectorAll('rect')[28]).fill,"rgb(178, 145, 47)");
-   done();
-   },1000);
+   var is_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
+  //  setTimeout(function(){
+    if(!is_chrome)
+    {
+      setTimeout(function(){
+      assert.equal(getComputedStyle(svg.querySelectorAll('rect')[0]).fill,"#5da5da");
+      assert.equal(getComputedStyle(svg.querySelectorAll('rect')[7]).fill,"#faa43a");
+      assert.equal(getComputedStyle(svg.querySelectorAll('rect')[14]).fill,"#60bd68");
+      assert.equal(getComputedStyle(svg.querySelectorAll('rect')[21]).fill,"#f17cb0");
+      assert.equal(getComputedStyle(svg.querySelectorAll('rect')[28]).fill,"#b2912f");
+      done();
+      },1000);
+    } else{
+      setTimeout(function(){
+      assert.equal(getComputedStyle(svg.querySelectorAll('rect')[0]).fill,"rgb(93, 165, 218)");
+      assert.equal(getComputedStyle(svg.querySelectorAll('rect')[7]).fill,"rgb(250, 164, 58)");
+      assert.equal(getComputedStyle(svg.querySelectorAll('rect')[14]).fill,"rgb(96, 189, 104)");
+      assert.equal(getComputedStyle(svg.querySelectorAll('rect')[21]).fill,"rgb(241, 124, 176)");
+      assert.equal(getComputedStyle(svg.querySelectorAll('rect')[28]).fill,"rgb(178, 145, 47)");
+      done();
+      },1000);
+    }
 
  });
 
@@ -132,7 +144,6 @@
    var rect = svg.querySelectorAll('rect');
 
    setTimeout(function(){
-  //  assert.equal(svg.querySelectorAll('rect').length,"40");
    assert.equal(getComputedStyle(svg.querySelectorAll('rect')[35]).x,"0px");
    assert.equal(getComputedStyle(svg.querySelectorAll('rect')[36]).y,"5px");
    assert.equal(getComputedStyle(svg.querySelectorAll('rect')[37]).x,"0px");
@@ -142,6 +153,7 @@
    },1000);
 
  });
+
   </script>
 
        </body>
