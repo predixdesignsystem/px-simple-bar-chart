@@ -27,6 +27,10 @@
 <px-simple-bar-chart id="fixture2" height="200" chart-data="[ [1,2,3] ]">
 </px-simple-bar-chart>
 
+<px-simple-bar-chart
+    id="fixture3"
+>&hearts;</px-simple-bar-chart>
+
   <script>
 
   test('fixture exists', function(done) {
@@ -82,6 +86,15 @@
 
  });
 
+ test('fixture3 base line exists', function(done) {
+   var fixture = document.getElementById("fixture3");
+   var svg = fixture.querySelector('svg')
+   setTimeout(function(){
+   assert.equal(getComputedStyle(svg.querySelector('line')).x2,"286");
+   done();
+   },1000);
+
+ });
   </script>
 
        </body>
