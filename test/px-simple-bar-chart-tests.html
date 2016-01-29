@@ -8,6 +8,7 @@
        <!-- Requires Webcomponents.js polyfill is provided by the page for browsers that don't support html imports -->
        <script src="../bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
        <script src="../web-component-tester/browser.js"></script>
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 
        <!-- Import custom element. Note: see comment about relative paths to dependencies in the *.html file referenced below -->
        <link rel="import" href="../px-simple-bar-chart.html" />
@@ -24,6 +25,12 @@
 <px-simple-bar-chart
     id="fixture3"
 >&hearts;</px-simple-bar-chart>
+
+<div id="fixture_dimensions" style="width:300px; height:200px;">
+    <px-simple-bar-chart
+        height="auto" width="auto" id="fixture4"
+    >&hearts;</px-simple-bar-chart>
+</div>
 
   <script>
 
@@ -80,6 +87,16 @@
 
  });
 
+ test('fixture3 SVG element has default width', function(done) {
+   var fixture = document.getElementById("fixture1");
+
+   setTimeout(function(){
+   assert.equal(getComputedStyle(fixture.querySelector('svg')).width,"285px");
+   done();
+   },1000);
+
+ });
+
  test('fixture3 count all rectangle in chart equals the data array', function(done) {
    var fixture = document.getElementById("fixture3");
    var svg = fixture.querySelector('svg');
@@ -128,14 +145,55 @@
    setTimeout(function(){
    assert.equal(getComputedStyle(svg.querySelectorAll('rect')[35]).x,"0px");
    assert.equal(getComputedStyle(svg.querySelectorAll('rect')[36]).y,"5px");
-   assert.equal(getComputedStyle(svg.querySelectorAll('rect')[37]).x,"0px");
+   assert.equal(getComputedStyle(svg.querySelectorAll('rect')[37]).x,"86px");
    assert.equal(getComputedStyle(svg.querySelectorAll('rect')[38]).y,"5px");
-   assert.equal(getComputedStyle(svg.querySelectorAll('rect')[39]).x,"0px");
+   assert.equal(getComputedStyle(svg.querySelectorAll('rect')[39]).x,"172px");
    done();
    },1000);
 
  });
 
+ test('fixture4 SVG element has assigned width', function(done) {
+   var fixture = document.getElementById("fixture4");
+
+   setTimeout(function(){
+   assert.equal(getComputedStyle(fixture.querySelector('svg')).width,"299px");
+   done();
+   },1000);
+
+ });
+
+ test('fixture4 SVG element has assigned height', function(done) {
+   var fixture = document.getElementById("fixture4");
+
+   setTimeout(function(){
+   assert.equal(getComputedStyle(fixture.querySelector('svg')).height,"200px");
+   done();
+   },1000);
+
+ });
+
+ test('fixture4 test for resize chart by height', function(done) {
+   var fixture = document.getElementById("fixture4");
+   document.getElementById('fixture_dimensions').setAttribute("style","height:270px");
+   window.dispatchEvent(new Event('resize'));
+   setTimeout(function(){
+   assert.equal(getComputedStyle(fixture.querySelector('svg')).height,"270px");
+   done();
+   },1000);
+
+ });
+
+ test('fixture4 test for resize chart by width', function(done) {
+   var fixture = document.getElementById("fixture4");
+   document.getElementById('fixture_dimensions').setAttribute("style","width:400px");
+   window.dispatchEvent(new Event('resize'));
+   setTimeout(function(){
+   assert.equal(getComputedStyle(fixture.querySelector('svg')).width,"403px");
+   done();
+ },1000);
+
+ });
   </script>
 
        </body>
