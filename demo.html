@@ -278,114 +278,197 @@
 
         <script>
 
-            var template = document.querySelector('#just-for-demo');
+        function generateRandomNumber(min, max) {
+          return Math.random() * (max - min) + min;
+        }
 
-            // The dom-change event signifies when the template has stamped its DOM.
-            template.addEventListener('dom-change', function() {
-                this.max = 50000;
-                this.min = 50;
-                this.values = 7;
-                this.series = 5;
-                this.width = 283;
-                this.height = 150;
-                var that = this;
-                handleChange(that);
-                var sliders = document.getElementsByClassName('listen-for-change');
-                for(i=0;i<sliders.length;i++) {
-                    sliders[i].addEventListener('change', function (e) {
-                        handleChange(that);
-                    });
-                };
-            });
+        var generateNewData = function(numSeries, numValues) {
+            var minValueInput = document.getElementById("min-input"),
+                maxValueInput = document.getElementById("max-input"),
+                min = parseInt(minValueInput.value),
+                max = parseInt(maxValueInput.value),
+                arr = [],
+                i,
+                j;
+            for(i=0;i<numSeries;i++) {
+                arr[i] = [];
+                for(j=0;j<numValues;j++) {
+                    arr[i][j] = parseInt(generateRandomNumber(min, max));
+                }
+            }
+            return arr;
+        };
 
-            var handleChange = function(that) {
-                that.min = document.getElementById('min-input').value;
-                that.max = document.getElementById('max-input').value;
-                that.width = document.getElementById('width-input').value;
-                that.height = document.getElementById('height-input').value;
-                that.values = document.getElementById('values-input').value;
-                that.series = document.getElementById('series-input').value;
-                var newData = generateNewData(that.values, that.series);
-                var chart = document.getElementById("demo-chart");
-                if(chart) {
-                    chart.setAttribute("chart-data", JSON.stringify(newData));
-                };
-            };
+        var template = document.querySelector('#just-for-demo');
+        var handleChange = function() {
+            this.min = document.getElementById('min-input').value;
+            this.max = document.getElementById('max-input').value;
+            this.width = document.getElementById('width-input').value;
+            this.height = document.getElementById('height-input').value;
+            this.values = document.getElementById('values-input').value;
+            this.series = document.getElementById('series-input').value;
+            var newData = generateNewData(this.values, this.series);
+            var chart = document.getElementById("demo-chart");
+            if(chart) {
+                chart.setAttribute("chart-data", JSON.stringify(newData));
+            }
+        };
 
-            function generateRandomNumber(min, max) {
-                return Math.random() * (max - min) + min;
-            };
+        // The dom-change event signifies when the template has stamped its DOM.
+        template.addEventListener('dom-change', function() {
+          var that = this,
+              sliders = document.getElementsByClassName('listen-for-change');
+          this.max = 50000;
+          this.min = 50;
+          this.values = 7;
+          this.series = 5;
+          this.width = 283;
+          this.height = 150;
 
-            var generateNewData = function(numSeries, numValues) {
-                var minValueInput = document.getElementById("min-input");
-                var maxValueInput = document.getElementById("max-input");
-                var min = parseInt(minValueInput.value);
-                var max = parseInt(maxValueInput.value);
-                var arr = [];
-                for(i=0;i<numSeries;i++) {
-                    arr[i] = [];
-                    for(j=0;j<numValues;j++) {
-                        arr[i][j] = parseInt(generateRandomNumber(min, max));
-                    }
-                };
-                return arr;
-            };
+          for(var i=0;i<sliders.length;i++) {
+              sliders[i].addEventListener('change', handleChange.bind(that));
+          }
+        });
 
-            var examples = [];
+        var examples = [];
 
-            function fiftyFifty() {
-                return Math.random() * 100 > 50;
-            };
+        function fiftyFifty() {
+            return Math.random() * 100 > 50;
+        }
 
-            function isInt(n){
-                return Number(n) === n && n % 1 === 0;
-            };
+        function isInt(n){
+            return Number(n) === n && n % 1 === 0;
+        }
 
-            function isFloat(n){
-                return n === Number(n) && n % 1 !== 0;
-            };
+        function isFloat(n){
+            return n === Number(n) && n % 1 !== 0;
+        }
 
-            function randomFloat(min,max) {
-                return (Math.random()*(max-min)+min).toFixed(2);
-            };
+        function randomFloat(min,max) {
+            return (Math.random()*(max-min)+min).toFixed(2);
+        }
 
-            function randomInt(min,max) {
-                return Math.floor(Math.random()*(max-min+1)+min);
-            };
+        function randomInt(min,max) {
+            return Math.floor(Math.random()*(max-min+1)+min);
+        }
 
-            function randomValue(min,max) {
-                if(isFloat(min) || isFloat(max)) {
-                    return randomFloat(min,max);
+        function randomValue(min,max) {
+            if(isFloat(min) || isFloat(max)) {
+                return randomFloat(min,max);
+            } else {
+                return randomInt(min,max);
+            }
+        }
+
+        function generateConfigValue(min, max, defaultValue) {
+            return fiftyFifty() ? defaultValue : randomValue(min,max);
+        }
+
+        function generateConfigValueFromSet(set) {
+            return set[randomValue(0,set.length-1)];
+        }
+
+        function generateRandomSeries(length, min, max) {
+            var arr = [];
+            var i;
+            for(i=0;i<=length;i++) {
+                arr.push(randomValue(min, max));
+            }
+            return arr;
+        }
+
+        function generateRandomChartData() {
+            var chartData = [],
+                length = randomValue(1,16),
+                min = randomValue(1,100),
+                max = randomValue(min,1000),
+                i;
+            for(i=0;i<length;i++) {
+                chartData.push(generateRandomSeries(10, min, max));
+            }
+            return chartData;
+        }
+
+        function generateChartConfig(n) {
+            var width = generateConfigValue(250,450,'');
+            var height = generateConfigValue(200,300,'');
+            var colorsA = ['#5da5da', '#faa43a', '#60bd68', '#f17cb0',
+                '#b2912f', '#b276b2', '#decf3f', '#f15854', '#4d4d4d'];
+            var colorsB = ["#029bde", "#99399b", "#e23838", "#f88303",
+                "#ffb901", "#5dbc3e"];
+            var colorsC = ["#EA3556", "#64938D", "#EDE5E2", "#ED146F",
+                "#EDDE45", "#9BF0E9"];
+            var colorsD = ["#3E7B7C", "#7EA593", "#7EA593", "#DBB793",
+                "#EE8568", "#957673", "#CC5E4F"];
+            var colorsE = ["#69D2E7", "#A7DBD8", "#E0E4CC", "#F38630",
+                "#FA6900"];
+            var colorsF = ["#FF4E50", "#FC913A", "#F9D423", "#EDE574",
+                "#E1F5C4"];
+            var colorsG = ["#A8E6CE", "#DCEDC2", "#FFD3B5", "#FFAAA6",
+                "#FF8C94"];
+            var colors = generateConfigValueFromSet([colorsA, colorsB,
+                colorsC, colorsD, colorsE, colorsF, colorsG]);
+
+            var legendLabelsA = [ 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
+                'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R' ];
+            var legendLabelsB = [ 'Alpha', 'Beta', 'Charlie', 'Delta', 'Echo',
+                'Fanta', 'Gamma', 'Hotel', 'India', 'Jakarta', 'King', 'Left',
+                'Master', 'Never', 'Over', 'Produce', 'Question', 'Recourse'];
+            var legendLabelsC = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
+                '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21'];
+            var legendLabelsD = ['Lorem', 'ipsum', 'dolor', 'sit', 'amet',
+                'consectetur', 'adipiscing', 'elit', 'praesent', 'sed', 'purus',
+                'non', 'est', 'posuere', 'dapibus', 'ut', 'at', 'purus',
+                'suspendisse'];
+            var legendLabelsE = ['Proin convallis', 'Ante non', 'Augue semper'
+                ,'Ut rutrum', 'Metus feugiat', 'Nullam at felis',
+                'Donec quis tincidunt', 'Vestibulum ut augue ligula',
+                'Integer in odio'];
+            var legendLabels = generateConfigValueFromSet([
+                legendLabelsA, legendLabelsB, legendLabelsC, legendLabelsD,
+                legendLabelsE
+            ]);
+            var d = 'This Simple Bar Chart is ';
+            if(width) {
+                d += width + ' pixels wide';
+                if(height) {
+                    d += ' and ' + height + ' pixels high. ';
                 } else {
-                    return randomInt(min,max);
+                    d += '.';
                 }
-            };
+            } else if(!width && height) {
+                d += height + ' pixels high. ';
+            } else if(!width && !height){
+                d += ' configured with the following setup. ';
+            }
+            var colorsText = '["' + colors.toString().split(',').join('", "') + '"]';
+            var legendLabelsText = '["' + legendLabels.toString().split(',').join('", "') + '"]';
 
-            function generateConfigValue(min, max, defaultValue) {
-                return fiftyFifty() ? defaultValue : randomValue(min,max);
+            var chartData = generateRandomChartData();
+            var config = {
+                description: d ? d : 'This is the default configuration of <px-simple-bar-chart>.',
+                width: width,
+                height: height,
+                chartData: chartData,
+                legendLabels: legendLabels,
+                id: 'demo-chart-'+n,
+                colors: colors,
+                colorsText: colorsText,
+                legendLabelsText: legendLabelsText
             };
+            return config;
+        }
 
-            function generateConfigValueFromSet(set) {
-                return set[randomValue(0,set.length-1)];
-            };
-
-            function generateRandomSeries(length, min, max) {
-                var arr = [];
+        var template = document.querySelector('#just-for-demo');
+        // The dom-change event signifies when the template has stamped its DOM.
+        template.addEventListener('dom-change', function() {
+            var that = this;
+            setTimeout(function() {
                 var i;
-                for(i=0;i<=length;i++) {
-                    arr.push(randomValue(min, max));
-                };
-                return arr;
-            };
-
-            function generateRandomChartData() {
-                var chartData = [];
-                var length = randomValue(1,16);
-                var min = randomValue(1,100);
-                var max = randomValue(min,1000);
-                for(i=0;i<length;i++) {
-                    chartData.push(generateRandomSeries(10, min, max));
+                for(i=0;i<100;i++) {
+                    examples.push(generateChartConfig(i));
                 }
+<<<<<<< HEAD
                 return chartData;
             };
 
@@ -475,6 +558,12 @@
             });
 
         </script>
+=======
+                that.examples = examples;
+            }, 500);
+        });
+      </script>
+>>>>>>> c6d1fb7a85790246eed3c2bc2bff309405fb44df
 
 
     </body>

@@ -2,7 +2,10 @@
 <link rel="import" href="../px-simple-chart-common-behavior/px-simple-chart-common-behavior.html" />
 
 <!--
-A simple bar chart that visualizes series data.
+
+Use this component to visualize a series or multiple series of numeric values as a bar chart or stacked bar chart. Each series is represented by a sequence of horizontally aligned rectangle bars, the height of each proportionally representing a value. If multiple series are passed to the component then a stacked sequence of rectangle bars will be drawn using a different color to represent each series and a legend to identify them will be drawn above the bars.
+
+The bar colors and legend labels are configurable. The width and height of the component are also configurable. We recommend viewing the demo.html page to become aware of the configuration possibilities. We also recommend using the default settings as they are designed for proper performance.
 
 ##### Usage
 
@@ -13,7 +16,7 @@ A simple bar chart that visualizes series data.
     </px-simple-bar-chart>
 
 @element px-simple-bar-chart
-@blurb Predix Experience Simple Bar Chart
+@blurb Predix UI Simple Bar Chart
 @homepage index.html
 @demo demo.html
 -->
@@ -64,9 +67,16 @@ A simple bar chart that visualizes series data.
          */
         properties: {
             /**
-            * chartData
+            * @prop chartData
+            * This attribute defines the series data to be charted. It needs to be passed in as a multi-dimensional array containing one or more arrays of numeric values.
             *
-            * Format: [ [7, 11], [10, 4], [15, 10] ... ]
+            *     <px-simple-bar-chart
+            *      chart-data="[ [1,2,3] ]">
+            *     </px-simple-bar-chart>
+            *
+            *     <px-simple-bar-chart
+            *      chart-data="[ [1,2,3], [4,5,6], [7,8,9] ]">
+            *     </px-simple-bar-chart>
             */
             chartData: {
                 type: Array,
@@ -76,9 +86,13 @@ A simple bar chart that visualizes series data.
                 }
             },
             /**
-            * legendLabels
-            *
-            * Format: Array
+            * This attribute defines the custom text labels for your bar chart legend. Pass in the values as an array of strings.
+            *     <px-simple-bar-chart
+            *        ...
+            *        legend-labels="['Alpha', 'Bravo', 'Charlie']">
+            *     </px-simple-bar-chart>
+            * @prop legendLabels
+            * @type Array
             */
             legendLabels: {
                 type: Array,
@@ -88,9 +102,13 @@ A simple bar chart that visualizes series data.
                 }
             },
             /**
-            * colors
-            *
-            * Format: Array
+            * This attribute configures custom bar colors. Pass in the desired values as an array of hexadecimal value color strings.
+            *     <px-simple-bar-chart
+            *       ...
+            *       colors=['#5da5da', '#faa43a', '#60bd68']>
+            *     </px-simple-bar-chart>
+            * @prop color
+            * @type: Array
             */
             colors: {
                 type: Array,
@@ -101,7 +119,7 @@ A simple bar chart that visualizes series data.
             },
 
             /**
-            * legendOrder
+            * @prop legendOrder
             *
             * Format: string
             */
@@ -113,24 +131,24 @@ A simple bar chart that visualizes series data.
         },
 
         _drawChartDebounced: function() {
+            var that = this;
+
             if(this.chartData && this.chartData.length > 0) {
-                // clear the svg element
-                this._clearSVG(this.svg);
-                this._setDimensions();
-                var setSizesPromise = this._getSetSizesPromise();
-                var that = this;
-                setSizesPromise.then (function (){
-                    that._setScales();
-                    that._drawBars();
-                    // that._requireLegend() ? that._drawLegend() : false;
-                    // add css class to svg elements using method from pxD3Util
-                    that._addStyleScope(that.svg);
-                });
+              // clear the svg element
+              this._clearSVG(this.svg);
+              this._setDimensions();
+              var setSizesPromise = this._getSetSizesPromise();
+              setSizesPromise.then (function (){
+                that._setScales();
+                that._drawBars();
+                // that._requireLegend() ? that._drawLegend() : false;
+                // add css class to svg elements using method from pxD3Util
+                that._addStyleScope(that.svg);
+              });
             } else {
-                var that = this;
-                var timeout = setTimeout(function(){
-                    that._drawChartDebounced();
-                }, 100);
+              var timeout = setTimeout(function(){
+                that._drawChartDebounced();
+              }, 100);
             }
         },
 
@@ -159,7 +177,7 @@ A simple bar chart that visualizes series data.
                             .attr("width", that.chartWidth)
                             .attr("height", that.heightValue);
                     resolve(true);
-                };
+                }
             });
         },
 
@@ -201,21 +219,22 @@ A simple bar chart that visualizes series data.
             } else {
                 // recurse and loop through color list
                 return this._getColor(Math.abs(this.colors.length - index));
-            };
+            }
         },
 
         _drawLegendItem: function(i, cumulative) {
             var that = this;
             return new Promise(function (resolve, reject){
-                var series = that.chartData[i];
-                var squareSize = 10;
-                var margin = 5;
-                var seriesTotal = that._getSeriesTotal(series);
+                var series = that.chartData[i],
+                    squareSize = 10,
+                    margin = 5,
+                    seriesTotal = that._getSeriesTotal(series),
+                    labelText;
                 if(that.legendLabels.length > i) {
-                    var labelText = that.legendLabels[i];
+                    labelText = that.legendLabels[i];
                 } else {
-                    var labelText = seriesTotal;
-                };
+                    labelText = seriesTotal;
+                }
                 var textWidthPromise = that._calculateTextWidth(labelText, "legend-text");
                 textWidthPromise.then(function (textWidth){
                     var fullWidth = squareSize + margin + textWidth;
@@ -224,7 +243,7 @@ A simple bar chart that visualizes series data.
                     if(endPosition >= that.chartWidth) {
                         cumulative.y += 20;
                         cumulative.x = 0;
-                    };
+                    }
                     var rectNode = that.svg
                             .append("rect")
                             .attr("class", "legend-box")
@@ -248,36 +267,33 @@ A simple bar chart that visualizes series data.
                 });
             });
         },
-
-
-
         _drawLegend: function(dryRun) {
             // TODO: Clean up this method, it is a bit unruly.
             // TODO: refactor to only measure or draw
             // dry run is meant to only calculate necessary height of legend
             // track X position as legend is drawn across the top of the chart
-            var dryRun = dryRun || false;
-            var dataLength = this.chartData.length;
-            var i;
-            var cumulative = { x: 0, y: 5 };
-            // legend can be ordered in reverse (default), or sequential
-            if(this.legendOrder === 'reverse') {
-                for(i=dataLength-1; i>=0; i--) {
-                    cumulativePromise = this._drawLegendItem(i, cumulative);
-                };
-            } else if(this.legendOrder === 'sequential') {
-                for(i=0; i<dataLength; i++) {
-                    cumulativePromise = this._drawLegendItem(i, cumulative);
-                };
-            };
-            if(dryRun) {
-                return cumulativePromise;
-            };
-        },
+            var dryRun = dryRun || false,
+                dataLength = this.chartData.length,
+                i,
+                cumulative = { x: 0, y: 5 },
+                cumulativePromise;
 
+            // legend can be ordered in reverse (default), or sequential
+            if (this.legendOrder === 'reverse') {
+              for (i=dataLength-1; i>=0; i--) {
+                  cumulativePromise = this._drawLegendItem(i, cumulative);
+              }
+            } else if (this.legendOrder === 'sequential') {
+              for (i=0; i<dataLength; i++) {
+                  cumulativePromise = this._drawLegendItem(i, cumulative);
+              }
+            }
+
+            return (dryRun) ? cumulativePromise : '';
+        },
         _drawBars: function() {
-            var offsets = []; // accumulate y for each value stack
-            var that = this;
+            var offsets = [], // accumulate y for each value stack
+                that = this;
             this.chartData.forEach(function(series, i) {
                 var color = that._getColor(i);
                 series.forEach(function(value, j) {
