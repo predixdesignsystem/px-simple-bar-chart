@@ -8,6 +8,7 @@
        <!-- Requires Webcomponents.js polyfill is provided by the page for browsers that don't support html imports -->
        <script src="../bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
        <script src="../web-component-tester/browser.js"></script>
+
        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 
        <!-- Import custom element. Note: see comment about relative paths to dependencies in the *.html file referenced below -->
@@ -122,11 +123,11 @@
    var svg = fixture.querySelector('svg');
    var rect = svg.querySelectorAll('rect');
 
-   assert.isTrue(svg.querySelectorAll('rect')[0].classList.contains('legend-box'));
-   assert.isTrue(svg.querySelectorAll('rect')[1].classList.contains('legend-box'));
-   assert.isTrue(svg.querySelectorAll('rect')[2].classList.contains('legend-box'));
-   assert.isTrue(svg.querySelectorAll('rect')[3].classList.contains('legend-box'));
-   assert.isTrue(svg.querySelectorAll('rect')[4].classList.contains('legend-box'));
+   assert.isTrue(rect[0].className.baseVal.indexOf('legend-box') !== -1);
+   assert.isTrue(rect[1].className.baseVal.indexOf('legend-box') !== -1);
+   assert.isTrue(rect[2].className.baseVal.indexOf('legend-box') !== -1);
+   assert.isTrue(rect[3].className.baseVal.indexOf('legend-box') !== -1);
+   assert.isTrue(rect[4].className.baseVal.indexOf('legend-box') !== -1);
    done();
 
  });
