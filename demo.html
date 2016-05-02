@@ -463,107 +463,16 @@
         // The dom-change event signifies when the template has stamped its DOM.
         template.addEventListener('dom-change', function() {
             var that = this;
+
             setTimeout(function() {
                 var i;
-                for(i=0;i<100;i++) {
-                    examples.push(generateChartConfig(i));
-                }
-<<<<<<< HEAD
-                return chartData;
-            };
-
-            function generateChartConfig(n) {
-                var width = generateConfigValue(250,450,'');
-                var height = generateConfigValue(200,300,'');
-                var colorsA = ['#5da5da', '#faa43a', '#60bd68', '#f17cb0',
-                    '#b2912f', '#b276b2', '#decf3f', '#f15854', '#4d4d4d'];
-                var colorsB = ["#029bde", "#99399b", "#e23838", "#f88303",
-                    "#ffb901", "#5dbc3e"];
-                var colorsC = ["#EA3556", "#64938D", "#EDE5E2", "#ED146F",
-                    "#EDDE45", "#9BF0E9"];
-                var colorsD = ["#3E7B7C", "#7EA593", "#7EA593", "#DBB793",
-                    "#EE8568", "#957673", "#CC5E4F"];
-                var colorsE = ["#69D2E7", "#A7DBD8", "#E0E4CC", "#F38630",
-                    "#FA6900"];
-                var colorsF = ["#FF4E50", "#FC913A", "#F9D423", "#EDE574",
-                    "#E1F5C4"];
-                var colorsG = ["#A8E6CE", "#DCEDC2", "#FFD3B5", "#FFAAA6",
-                    "#FF8C94"];
-                var colors = generateConfigValueFromSet([colorsA, colorsB,
-                    colorsC, colorsD, colorsE, colorsF, colorsG]);
-
-                var legendLabelsA = [ 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
-                    'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R' ];
-                var legendLabelsB = [ 'Alpha', 'Beta', 'Charlie', 'Delta', 'Echo',
-                    'Fanta', 'Gamma', 'Hotel', 'India', 'Jakarta', 'King', 'Left',
-                    'Master', 'Never', 'Over', 'Produce', 'Question', 'Recourse'];
-                var legendLabelsC = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
-                    '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21'];
-                var legendLabelsD = ['Lorem', 'ipsum', 'dolor', 'sit', 'amet',
-                    'consectetur', 'adipiscing', 'elit', 'praesent', 'sed', 'purus',
-                    'non', 'est', 'posuere', 'dapibus', 'ut', 'at', 'purus',
-                    'suspendisse'];
-                var legendLabelsE = ['Proin convallis', 'Ante non', 'Augue semper'
-                    ,'Ut rutrum', 'Metus feugiat', 'Nullam at felis',
-                    'Donec quis tincidunt', 'Vestibulum ut augue ligula',
-                    'Integer in odio'];
-                var legendLabels = generateConfigValueFromSet([
-                    legendLabelsA, legendLabelsB, legendLabelsC, legendLabelsD,
-                    legendLabelsE
-                ]);
-                var d = false;
-                var d = 'This Simple Bar Chart is ';
-                if(width) {
-                    d += width + ' pixels wide';
-                    if(height) {
-                        d += ' and ' + height + ' pixels high. ';
-                    } else {
-                        d += '.';
-                    };
-                } else if(!width && height) {
-                    d += height + ' pixels high. ';
-                } else if(!width && !height){
-                    d += ' configured with the following setup. '
-                };
-                var colorsText = '["' + colors.toString().split(',').join('", "') + '"]';
-                var legendLabelsText = '["' + legendLabels.toString().split(',').join('", "') + '"]';
-
-                var chartData = generateRandomChartData();
-                var config = {
-                    description: d ? d : 'This is the default configuration of <px-simple-bar-chart>.',
-                    width: width,
-                    height: height,
-                    chartData: chartData,
-                    legendLabels: legendLabels,
-                    id: 'demo-chart-'+n,
-                    colors: colors,
-                    colorsText: colorsText,
-                    legendLabelsText: legendLabelsText
-                };
-                return config;
-            };
-
-            var template = document.querySelector('#just-for-demo');
-            // The dom-change event signifies when the template has stamped its DOM.
-            template.addEventListener('dom-change', function() {
-                var that = this;
-                setTimeout(function() {
-                    var i;
-                    that.examples = examples;
-                    for(i=0;i<100;i++) {
-                        that.examples.push(generateChartConfig(i));
-                    };
-
-                }, 500);
-            });
-
-        </script>
-=======
                 that.examples = examples;
+                for(i=0;i<100;i++) {
+                    that.examples.push(generateChartConfig(i));
+                }
             }, 500);
         });
       </script>
->>>>>>> c6d1fb7a85790246eed3c2bc2bff309405fb44df
 
 
     </body>

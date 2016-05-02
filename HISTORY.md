@@ -1,3 +1,7 @@
+v1.3.4
+==================
+* fix bad merge in demo
+
 v1.3.3
 ==================
 * Adding ES6 promise for IE support
