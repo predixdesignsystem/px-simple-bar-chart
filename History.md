@@ -1,3 +1,7 @@
+v1.3.1
+==================
+* Adding ES6 promise for IE support
+
 v1.2.0
 ==================
 * Upgrade to Polymer 1.4.0
