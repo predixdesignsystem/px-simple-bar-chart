@@ -97,8 +97,8 @@
    var fixture = document.getElementById("fixture3");
    var svg = fixture.querySelector('svg');
    var rect = svg.querySelectorAll('rect');
-   var is_firechrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1 ||
-    navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
+   var is_firechrome = (navigator.userAgent.toLowerCase().indexOf('chrome') > -1 ||
+    navigator.userAgent.toLowerCase().indexOf('firefox') > -1) && navigator.userAgent.toLowerCase().indexOf('edge') === -1;
 
     if(!is_firechrome)
     {
