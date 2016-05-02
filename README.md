@@ -61,7 +61,7 @@ Define the target pixel width  of the chart component. The default settings are 
     width="370">
 </px-simple-bar-chart>
 ```
-#### width
+#### height
 
 Define the target pixel height of the chart component. The default settings are 150.
 
