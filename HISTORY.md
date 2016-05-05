@@ -1,3 +1,7 @@
+v1.3.5
+==================
+* added auto github pages functionality
+
 v1.3.4
 ==================
 * fix bad merge in demo
