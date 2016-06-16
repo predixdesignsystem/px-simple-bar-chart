@@ -16,7 +16,7 @@ Predix branding rules go in px-simple-bar-chart-predix.scss, not in this file.
 
 .px-simple-bar-chart-svg {
   background: white;
-  margin: 10px 0; }
+  margin: 0; }
 
 .legend-text {
   font-family: sans-serif;
