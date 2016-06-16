@@ -1,4 +1,4 @@
-#Px-Simple-Bar-Chart
+#Px-Simple-Bar-Chart [![Build Status](https://travis-ci.org/PredixDev/px-simple-bar-chart.svg?branch=master)](https://travis-ci.org/PredixDev/px-simple-bar-chart)
 
 ## Overview
 
