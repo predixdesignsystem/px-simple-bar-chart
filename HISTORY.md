@@ -1,3 +1,7 @@
+v1.5.3
+==================
+* added footer to demo page
+
 v1.5.2
 ==================
 * added new demo page

@@ -24,7 +24,8 @@ module.exports = function (grunt) {
             dist: {
                 files: {
                     'css/noprefix/px-simple-bar-chart-sketch.css': 'sass/px-simple-bar-chart-sketch.scss',
-                    'css/noprefix/px-simple-bar-chart.css': 'sass/px-simple-bar-chart-predix.scss'
+                    'css/noprefix/px-simple-bar-chart.css': 'sass/px-simple-bar-chart-predix.scss',
+                    'css/noprefix/px-simple-bar-chart-demo.css': 'sass/px-simple-bar-chart-demo.scss'
                 }
             }
         },
