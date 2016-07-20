@@ -1,6 +1,6 @@
 {
   "name": "px-simple-bar-chart",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "main": [
     "px-simple-bar-chart.html"
   ],
@@ -12,7 +12,9 @@
     "bower_components",
     "node_modules",
     "test",
-    "OSS_Notice.pdf"
+    "OSS_Notice.pdf",
+    ".github",
+    ".scripts"
   ],
   "keywords": [
     "web-components"

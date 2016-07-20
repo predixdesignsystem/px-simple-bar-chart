@@ -1,6 +1,10 @@
+v1.5.2
+==================
+* added new demo page
+
 v1.4.0
 ==================
-Upgrade to Polymer 1.5.0
+* Upgrade to Polymer 1.5.0
 
 v1.3.7
 ==================
