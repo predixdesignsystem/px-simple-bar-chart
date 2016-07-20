@@ -26,8 +26,19 @@
     "es6-promise": "3.2.2"
   },
   "devDependencies": {
-    "iron-component-page": "PolymerElements/iron-component-page#~v1.1.0",
     "px-starter-kit-design": "https://github.com/PredixDev/px-starter-kit-design.git#~0.4.0",
-    "px-slider": "https://github.com/PredixDev/px-slider.git#~0.5.0"
+    "px-slider": "https://github.com/PredixDev/px-slider.git#~0.5.0",
+    "px-spacing-design": "~0.3.4",
+    "px-buttons-design": "~0.4.13",
+    "px-forms-design": "~0.3.13",
+    "px-button-group-design": "~0.3.8",
+    "px-typography-design": "~0.3.2",
+    "px-forms-design": "#~0.3.15",
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#~1.2.3",
+    "px-tabs": "~0.4.0",
+    "ace-widget": "LostInBrittany/ace-widget#~1.0.13",
+    "px-api-viewer": "^0.0.1",
+    "px-clipboard": "^0.0.4",
+    "px-demo-snippet": "^0.0.8"
   }
 }
