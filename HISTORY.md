@@ -1,3 +1,7 @@
+v1.5.4
+==================
+* updated styles
+
 v1.5.3
 ==================
 * added footer to demo page
