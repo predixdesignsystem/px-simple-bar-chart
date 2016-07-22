@@ -64,8 +64,7 @@ $inuit-enable-list-inline--delimited : true;
   background: $white;
   border: 1px solid $gray4;
   overflow-x: hidden;
-  overflow-y: auto;
-  max-height: calculateRem(590px);
+  overflow-y: auto; 
 }
 
 .demoContainer {

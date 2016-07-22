@@ -13,7 +13,7 @@
   <link rel="import" href="../px-api-viewer/px-api-viewer.html" />
   <link rel="import" href="../px-tabs/px-tab-set.html" />
   <link rel="import" href="px-simple-bar-chart.html" />
-  <link rel="icon" href="px-favicon.png" type="image/x-icon" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
 
   <link rel="import" href="../px-demo-snippet/px-demo-snippet.html">
   <link rel="import" href="../polymer-font-awesome/polymer-font-awesome.html">
@@ -30,14 +30,14 @@
     <!-- discription -->
     <div class="hero u-p++ text--shadow">
       <h1 class="delta">px-simple-bar-chart</h1>
-      <p>
+      <p class="description-text">
         Use this component to visualize a series or multiple series of numeric values as a bar chart or stacked bar chart.
-        <br /> Each series is represented by a sequence of horizontally aligned rectangle bars, the height of each proportionally representing a value.
-        <br /> If multiple series are passed to the component then a stacked sequence of rectangle bars will be drawn using a different color to represent each series and a legend to identify them will be drawn above the bars.
-        <br /> The bar colors and legend labels are configurable.
-        <br /> The width and height of the component are also configurable.
-        <br /> We recommend using the default settings as they are designed for proper performance.
-        <br />
+         Each series is represented by a sequence of horizontally aligned rectangle bars, the height of each proportionally representing a value.
+         If multiple series are passed to the component then a stacked sequence of rectangle bars will be drawn using a different color to represent each series and a legend to identify them will be drawn above the bars.
+         The bar colors and legend labels are configurable.
+         The width and height of the component are also configurable.
+         We recommend using the default settings as they are designed for proper performance.
+
       </p>
       <div class="flex">
         <img class="u-mr-- " src="https://img.shields.io/travis/PredixDev/px-simple-bar-chart.svg?style=flat-square" alt="Travis"  onerror="this.style.display='none'"/>
@@ -138,8 +138,8 @@
       var template = document.querySelector('template[is=dom-bind]'),
           optionsArray = [
             {
-            "width": "500",
-            "height": 450,
+            "width": "350",
+            "height": 250,
             "chartData": [
               [
                 102,

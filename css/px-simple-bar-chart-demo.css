@@ -1090,8 +1090,7 @@ textarea {
   background: white;
   border: 1px solid #d1d0d8;
   overflow-x: hidden;
-  overflow-y: auto;
-  max-height: 39.3333333333rem; }
+  overflow-y: auto; }
 
 .demoContainer {
   -ms-flex: 1 1;
