@@ -1,3 +1,7 @@
+v1.5.5
+==================
+* added configurations to demo
+
 v1.5.4
 ==================
 * updated styles
