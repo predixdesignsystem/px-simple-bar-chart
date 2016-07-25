@@ -1,3 +1,7 @@
+v1.5.6
+==================
+* fixed tag for demo-snippet
+
 v1.5.5
 ==================
 * added configurations to demo
