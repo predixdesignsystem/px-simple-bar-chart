@@ -1,3 +1,7 @@
+v1.5.7
+==================
+* updated gh-pages script to vulcanize demo
+
 v1.5.6
 ==================
 * fixed tag for demo-snippet
