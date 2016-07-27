@@ -1,3 +1,7 @@
+v1.5.8
+==================
+* added github link and updated readme
+
 v1.5.7
 ==================
 * updated gh-pages script to vulcanize demo

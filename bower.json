@@ -1,6 +1,6 @@
 {
   "name": "px-simple-bar-chart",
-  "version": "1.5.7",
+  "version": "1.5.8",
   "main": [
     "px-simple-bar-chart.html"
   ],
@@ -45,6 +45,7 @@
     "px-toggle-design": "^0.2.12",
     "px-headings-design": "^0.2.14",
     "px-actionable-text-icons-design": "^0.0.3",
-    "px-code-design": "~0.2.11"
+    "px-code-design": "~0.2.11",
+    "polymer-font-awesome": "px-polymer-font-awesome#^0.1.8"
   }
 }
