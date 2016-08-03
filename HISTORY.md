@@ -1,3 +1,7 @@
+v1.5.9
+==================
+* updated demo png
+
 v1.5.8
 ==================
 * added github link and updated readme
