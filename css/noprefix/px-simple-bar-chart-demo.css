@@ -10,7 +10,7 @@
  */
 /*
 THIS FILE SHOULD CONTAIN ONLY ABSTRACT/'SKETCH' THEME RULES, NOT SPECIFIC TO PREDIX BRANDING
-Predix branding rules go in px-rangepicker-predix.scss, not in this file.
+Predix branding rules go in px-simple-bar-chart.scss, not in this file.
 */
 /*------------------------------------*    #PX-COLORS-DESIGN
 \*------------------------------------*/
@@ -1050,14 +1050,15 @@ textarea {
   max-width: 46.6666666667rem; }
 
 .properties {
-  flex-basis: 16.6666666667rem;
+  flex: 0 0 16.6666666667rem;
   background: white;
   border: 1px solid #d1d0d8;
   overflow-x: hidden;
-  overflow-y: auto; }
+  overflow-y: auto;
+  margin-right: 1.3333333333rem; }
 
 .demoContainer {
-  flex: 1 1; }
+  flex: 1 1 auto; }
 
 .demoSnippet {
   flex-basis: 10rem; }
@@ -1072,7 +1073,8 @@ textarea {
 .demo {
   flex-basis: 26.6666666667rem;
   background: white;
-  border: 1px solid #d1d0d8; }
+  border: 1px solid #d1d0d8;
+  overflow: auto; }
 
 .componentList a {
   color: #2886af; }
@@ -1093,9 +1095,7 @@ textarea {
   background-color: white; }
 
 .tabContainer {
-  flex: 0 0 100%;
-  height: 4rem;
-  margin-top: 2.3333333333rem;
+  height: auto;
   background: #f7f7fc; }
 
 .footer {
@@ -1125,8 +1125,8 @@ textarea {
 @media screen and (max-width: 44.8rem) {
   .mega-demo {
     flex-direction: column; }
-  .demoContainer {
-    margin-left: 2rem; }
+  .properties {
+    margin-right: 0px; }
   .footer__container {
     flex-direction: column; }
   .footer__list {

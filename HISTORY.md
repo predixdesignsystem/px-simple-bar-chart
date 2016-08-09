@@ -1,3 +1,7 @@
+v1.5.10
+==================
+* updated mega demo styles and bower px-demo-snippet to ^
+
 v1.5.9
 ==================
 * updated demo png

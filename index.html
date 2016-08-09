@@ -33,44 +33,40 @@
         <iron-icon class="menu__open" icon="fa:fa-github"></iron-icon>View on Github
       </a>
       <h1 class="delta">px-simple-bar-chart</h1>
-      <p class="description-text">
-        Use this component to visualize a series or multiple series of numeric values as a bar chart or stacked bar chart.
-         Each series is represented by a sequence of horizontally aligned rectangle bars, the height of each proportionally
-         representing a value.
-         <br>
-         If multiple series are passed to the component then a stacked sequence of rectangle bars will be drawn using a
-         different color to represent each series and a legend to identify them will be drawn above the bars.
-         <br>
-         The bar colors and legend labels are configurable.
-         <br>
-         The width and height of the component are also configurable.
-         <br>
-         We recommend using the default settings as they are designed for proper performance.
-
-      </p>
+      <div class="description-text">
+          <p>
+           Use this component to visualize a series or multiple series of numeric values as a bar chart or stacked bar chart.
+            Each series is represented by a sequence of horizontally aligned rectangle bars, the height of each proportionally
+            representing a value.
+          </p>
+          <p>
+             It uses the data visualization color palette by default, but this can be overridden with configuration. The height and
+             width are configurable, as are the legend labels – if none are provided, the legend will not be shown.
+             We recommend using the default settings as they are designed for proper performance.
+          </p>
+       </div>
       <div class="flex">
         <img class="u-mr-- " src="https://img.shields.io/travis/PredixDev/px-simple-bar-chart.svg?style=flat-square" alt="Travis"  onerror="this.style.display='none'"/>
         <img class="u-mr--" src="https://img.shields.io/bower/v/px-simple-bar-chart.svg?style=flat-square" alt="Bower" onerror="this.style.display='none'" />
         <img class="u-mr--" src="https://img.shields.io/github/issues-raw/PredixDev/px-simple-bar-chart.svg?style=flat-square" alt="Issues" onerror="this.style.display='none'" />
       </div>
     </div>
-    <br /> 
 
     <!-- mega demo -->
     <div style="position: relative;" class="u-pb++ flex flex--col" id="defaultTab">
       <div class="tabContainer u-pt++ u-pl++">
         <px-tab-set selected="{{selected}}" bare no-bottom-border>
           <template is="dom-repeat" items="{{optionsArray}}">
-            <px-tab>Configuration {{indexPlusOne(index)}}</px-tab>
+            <px-tab>Option {{indexPlusOne(index)}}</px-tab>
           </template>
         </px-tab-set>
       </div>
       <px-tab-pages selected="{{selected}}">
         <template is="dom-repeat" items="{{optionsArray}}">
-          <section class="tab-page flex flex--right flex--wrap">
-            <div class="mega-demo flex u-pb++">
+          <section class="tab-page">
+            <div class="mega-demo flex flex--wrap u-ph++ u-pb++">
               <!-- Properties -->
-              <div class="properties u-ph+ u-pb+ u-mt++ u-mh++">
+              <div class="properties u-ph+ u-pb+ u-mt+">
                 <p class="epsilon">Properties</p>
                 <div class="u-mb-">width:
                   <input id="width{{indexPlusOne(index)}}" class="text-input" type="number" placeholder="{{item.width}}" value="{{item.width::input}}" />
@@ -80,11 +76,11 @@
                 </div>
               </div>
 
-              <div class="demoContainer u-mr++">
+              <div class="demoContainer u-mt+">
                 <!-- demo -->
                 <div class="flex flex--col">
-                  <div class="flex__item demo u-ph+ u-pb+ u-mt++">
-                    <div class="u-m+">
+                  <div class="flex__item demo u-p+">
+
                       <px-simple-bar-chart
                         id="demo{{indexPlusOne(index)}}"
                         chart-data="{{item.chartData}}"
@@ -93,7 +89,7 @@
                         legend-labels="{{item.legendLabels}}"
                         colors="{{item.colors}}">
                       </px-simple-bar-chart>
-                    </div>
+
                   </div>
                   <div class="flex__item">
                   <px-demo-snippet
