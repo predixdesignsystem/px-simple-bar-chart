@@ -20,12 +20,16 @@ The bar colors and legend labels are configurable. The width and height of the c
 @homepage index.html
 @demo demo.html
 -->
+
+<link rel="import" href="css/px-simple-bar-chart-styles.html">
+
 <dom-module id="px-simple-bar-chart">
     <script type="text/javascript" src="../es6-promise/es6-promise.min.js"></script>
     <script type="text/javascript" src="../d3/d3.js"></script>
-    <link rel="import" type="css" href="css/px-simple-bar-chart.css"/>
     <template>
-        <svg class="px-simple-bar-chart-svg"></svg>
+      <style include="px-simple-bar-chart-styles"></style>
+      <style include="px-theme-styles"></style>
+      <svg class="px-simple-bar-chart-svg"></svg>
     </template>
 </dom-module>
 
