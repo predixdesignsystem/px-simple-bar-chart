@@ -1,3 +1,19 @@
+v1.6.3
+==================
+* Update to latest demo snippet component and latest gulpfile.
+
+v1.6.2
+==================
+* revert d3 version, accidental version bump.
+
+v1.6.1
+==================
+* Correcting wonky dependencies.
+
+v1.6.0
+==================
+* Grunt to gulp migration and style modules.
+
 v1.5.11
 ==================
 * added overflow to demoContainer and removed flex__wrap from mega-demo
