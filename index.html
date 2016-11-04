@@ -15,6 +15,7 @@
   <link rel="import" href="../iron-ajax/iron-ajax.html" />
   <link rel="import" href="../px-api-viewer/px-api-viewer.html" />
   <link rel="import" href="../px-tabs/px-tab-set.html" />
+  <link rel="import" href="../px-dropdown/px-dropdown.html" />
   <link rel="import" href="px-simple-bar-chart.html" />
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
 
@@ -71,11 +72,22 @@
               <!-- Properties -->
               <div class="properties u-ph+ u-pb+ u-mt+">
                 <p class="epsilon">Properties</p>
-                <div class="u-mb-">width:
+                <div class="u-mb-">Width:
                   <input id="width{{indexPlusOne(index)}}" class="text-input" type="text" placeholder="{{item.width}}" value="{{item.width::input}}" />
                 </div>
-                <div class="u-mb-">height:
+                <div class="u-mb-">Height:
                   <input id="height{{indexPlusOne(index)}}" class="text-input" type="text" placeholder="{{item.height}}" value="{{item.height::input}}" />
+                </div>
+                <div class="u-mb-">Legend Order:
+                  <div style="width: 100%;">
+                    <px-dropdown id="legendOrder{{indexPlusOne(index)}}" value="{{item.legendOrder}}" display-value="{{item.legendOrder}}" bound-target="properties">
+                      <px-dropdown-content
+                        items='[
+                          {"key":"one", "val": "reverse"},
+                          {"key":"two", "val": ""}]'>
+                      </px-dropdown-content>
+                    </px-dropdown>
+                  </div>
                 </div>
               </div>
 
@@ -90,14 +102,16 @@
                         width="{{item.width}}"
                         height="{{item.height}}"
                         legend-labels="{{item.legendLabels}}"
-                        colors="{{item.colors}}">
+                        colors="{{item.colors}}"
+                        legend-order="{{item.legendOrder}}">
                       </px-simple-bar-chart>
 
                   </div>
                   <div>
                     <px-demo-snippet
                       element-properties={{item}}
-                      element-name="px-simple-bar-chart">
+                      element-name="px-simple-bar-chart"
+                      links-includes='["px-simple-chart-common-behavior/px-polygit-imports.html"]'>
                     </px-demo-snippet>
                   </div>
                 </div>
@@ -129,7 +143,7 @@
             <li>
               <a href="mailto:info@predix.io" class="footer__list--lnk">Contact Us</a>
             </li>
-            <li>Copyright &copy; {{year}} General Electric Company. All rights reserved.</li>
+            <li>Copyright &copy; 2016 General Electric Company. All rights reserved.</li>
           </ul>
         </div>
       </div>
@@ -139,7 +153,6 @@
     window.addEventListener('WebComponentsReady', function() {
 
       var template = document.querySelector('template[is=dom-bind]'),
-              year = new Date(),
           chartData = [
             [
               [
@@ -190,37 +203,33 @@
               "height": height[0],
               "chartData": chartData[0],
               "legendLabels": legendLabels[1],
-              "colors": colors[0]
+              "colors": colors[0],
+              "legendOrder": "reverse"
             },
             {
               "width": width[1],
               "height": height[1],
               "chartData": chartData[1],
               "legendLabels": legendLabels[10],
-              "colors": colors[1]
+              "colors": colors[1],
+              "legendOrder": "reverse"
             },
             {
               "width": width[1],
               "height": height[1],
               "chartData": chartData[0],
               "legendLabels": legendLabels[0],
-              "colors": colors[2]
+              "colors": colors[2],
+              "legendOrder": "reverse"
             }
           ],
           indexPlusOne = function(num) {
             return num + 1;
-          },
-          onlyOneConfigItem = function() {
-            return (optionsArray.length === 1);
           };
-
-          year = year.getFullYear();
 
           template.selected = "0";
           template.optionsArray = optionsArray;
           template.indexPlusOne = indexPlusOne;
-          template.onlyOneConfigItem = onlyOneConfigItem;
-          template.year = year;
 
     });
   </script>
