@@ -1,3 +1,7 @@
+v1.6.6
+==================
+* fixed code pen by importing v3 of d3 to codepen
+* added a simple demo 
 
 v1.6.5
 ==================
