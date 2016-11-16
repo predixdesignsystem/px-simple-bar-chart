@@ -1,3 +1,8 @@
+
+v1.6.7
+==================
+* changing Gruntfile.js to gulpfile.js
+
 v1.6.6
 ==================
 * fixed code pen by importing v3 of d3 to codepen
