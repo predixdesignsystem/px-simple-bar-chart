@@ -1,3 +1,7 @@
+v1.6.9
+==================
+* update dependencies for dropdown
+
 v1.6.8
 ==================
 * removing px-theme style call
