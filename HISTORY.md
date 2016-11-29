@@ -1,3 +1,7 @@
+v1.6.13
+==================
+* added css vars for a dark theme
+
 v1.6.12
 ==================
 * updating slider dependency
@@ -26,7 +30,7 @@ v1.6.7
 v1.6.6
 ==================
 * fixed code pen by importing v3 of d3 to codepen
-* added a simple demo 
+* added a simple demo
 
 v1.6.5
 ==================

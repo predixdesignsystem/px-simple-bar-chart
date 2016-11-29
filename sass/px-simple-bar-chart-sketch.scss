@@ -23,11 +23,12 @@ Predix branding rules go in px-simple-bar-chart-predix.scss, not in this file.
   shape-rendering: crispEdges;
 }
 .px-simple-bar-chart-svg {
-    background: white;
+    background: var(--px-simple-bar-chart-background-color, $white);
     margin: 0;
 }
 .legend-text {
     font-family: sans-serif;
-    color: #000000;
+    color: var(--px-simple-bar-chart-text-color,$black);;
     font-size: 12px;
+    fill: var(--px-simple-bar-chart-text-color,$black);
 }
