@@ -1,3 +1,8 @@
+v1.8.2
+==================
+* Fix typography application for theming
+* Fix syntax issues
+
 v1.8.1
 ==================
 * Change register width design to match new specs

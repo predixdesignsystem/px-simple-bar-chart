@@ -28,7 +28,7 @@ Predix branding rules go in px-simple-bar-chart-predix.scss, not in this file.
 }
 .legend-text {
     font-family: sans-serif;
-    color: var(--px-simple-bar-chart-text-color,$black);;
     font-size: 12px;
+    color: var(--px-simple-bar-chart-text-color,$black);
     fill: var(--px-simple-bar-chart-text-color,$black);
 }
