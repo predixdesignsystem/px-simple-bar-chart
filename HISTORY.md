@@ -1,3 +1,8 @@
+v1.8.1
+==================
+* Change register width design to match new specs
+* Downgrade mistaken bump to D3 dependency (v4 has breaking changes)
+
 v1.8.0
 ==================
 * Add theming capability, update documentation to match and import new required behaviors

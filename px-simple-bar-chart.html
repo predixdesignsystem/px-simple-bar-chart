@@ -408,7 +408,8 @@ The following theme would be incorrect because it has a gap. All series in your 
             var that = this;
             return new Promise(function (resolve, reject){
                 var series = that.chartData[i],
-                    squareSize = 10,
+                    squareHeight = 10,
+                    squareWidth = 3,
                     margin = 5,
                     seriesTotal = that._getSeriesTotal(series),
                     labelText;
@@ -419,7 +420,7 @@ The following theme would be incorrect because it has a gap. All series in your 
                 }
                 var textWidthPromise = that._calculateTextWidth(labelText, "legend-text");
                 textWidthPromise.then(function (textWidth){
-                    var fullWidth = squareSize + margin + textWidth;
+                    var fullWidth = squareWidth + margin + textWidth;
                     var endPosition = fullWidth + cumulative.x;
                     var color = that._getColor(i);
                     if(endPosition >= that.chartWidth) {
@@ -431,10 +432,10 @@ The following theme would be incorrect because it has a gap. All series in your 
                             .attr("class", "legend-box")
                             .attr("x", cumulative.x)
                             .attr("y", cumulative.y)
-                            .attr("width", squareSize)
-                            .attr("height", squareSize)
+                            .attr("width", squareWidth)
+                            .attr("height", squareHeight)
                             .attr("fill", color);
-                    cumulative.x += squareSize + margin;
+                    cumulative.x += squareWidth + margin;
                     var textNode = that.svg
                             .append("text")
                             .attr("class", "legend-text")
