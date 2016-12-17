@@ -1,3 +1,7 @@
+v1.8.3
+=================
+* Downgrade es6-promise
+
 v1.8.2
 ==================
 * Fix typography application for theming

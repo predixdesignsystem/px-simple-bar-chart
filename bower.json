@@ -1,6 +1,6 @@
 {
     "name": "px-simple-bar-chart",
-    "version": "1.8.2",
+    "version": "1.8.3",
     "main": [
         "px-simple-bar-chart.html"
     ],
@@ -25,7 +25,7 @@
         "d3": "^3.0.0",
         "iron-ajax": "PolymerElements/iron-ajax#~1.4.3",
         "px-simple-chart-common-behavior": "^1.6.0",
-        "es6-promise": "^4.0.5"
+        "es6-promise": "^3.3.1"
     },
     "devDependencies": {
         "px-starter-kit-design": "^0.7.0",
