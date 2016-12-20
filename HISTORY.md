@@ -1,3 +1,7 @@
+v1.8.4
+=================
+* Update tests to cover new theming cases
+
 v1.8.3
 =================
 * Downgrade es6-promise

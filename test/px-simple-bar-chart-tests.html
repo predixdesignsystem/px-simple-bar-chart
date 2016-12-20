@@ -29,6 +29,28 @@
     <px-simple-bar-chart height="auto" width="auto" id="fixture4">&hearts;</px-simple-bar-chart>
 </div>
 
+<style is="custom-style">
+  :root #fixture5 {
+    --px-vis-series-color-0: rgb(1,2,3);
+    --px-vis-series-color-1: rgb(4,5,6);
+    --px-vis-series-color-2: rgb(7,8,9);
+    --px-vis-series-color-3: rgb(10,11,12);
+    --px-vis-series-color-4: rgb(255,255,0);
+  }
+</style>
+<px-simple-bar-chart id="fixture5">&hearts;</px-simple-bar-chart>
+
+<style is="custom-style">
+  :root #fixture6 {
+    --px-vis-series-color-0: rgb(1,2,3);
+    --px-vis-series-color-1: rgb(4,5,6);
+    --px-vis-series-color-2: rgb(7,8,9);
+    --px-vis-series-color-3: rgb(10,11,12);
+    --px-vis-series-color-4: rgb(255,255,0);
+  }
+</style>
+<px-simple-bar-chart id="fixture6" colors='["#aaa","#bbb","#ccc","#ddd","#eee"]'>&hearts;</px-simple-bar-chart>
+
   <script>
 
   test('fixture exists', function(done) {
@@ -100,20 +122,35 @@
    var is_firechrome = (navigator.userAgent.toLowerCase().indexOf('chrome') > -1 ||
     navigator.userAgent.toLowerCase().indexOf('firefox') > -1) && navigator.userAgent.toLowerCase().indexOf('edge') === -1;
 
+    // Normalizes RGB colors by stripping all whitespaces
+    var normalizeRgb = function(rgbString) { return rgbString.toString().replace(/\s+/g, '') };
+
+    // Get normalized RGB fill from `svg.querySelectorAll('rect')` at `num` index
+    var getFill = function(num) { return normalizeRgb(getComputedStyle(rect[num]).fill) };
+
+    // Determine which colors should be set on the chart by calling `_getColor` to retrieve theme, normalize each
+    var colors = [
+      normalizeRgb(fixture._getColor(0)),
+      normalizeRgb(fixture._getColor(1)),
+      normalizeRgb(fixture._getColor(2)),
+      normalizeRgb(fixture._getColor(3)),
+      normalizeRgb(fixture._getColor(4))
+    ];
+
     if(!is_firechrome)
     {
-      assert.equal(getComputedStyle(svg.querySelectorAll('rect')[5]).fill,"#5da5da");
-      assert.equal(getComputedStyle(svg.querySelectorAll('rect')[12]).fill,"#faa43a");
-      assert.equal(getComputedStyle(svg.querySelectorAll('rect')[19]).fill,"#60bd68");
-      assert.equal(getComputedStyle(svg.querySelectorAll('rect')[26]).fill,"#f17cb0");
-      assert.equal(getComputedStyle(svg.querySelectorAll('rect')[33]).fill,"#b2912f");
+      assert.equal(getFill(5), colors[0]);
+      assert.equal(getFill(12),colors[1]);
+      assert.equal(getFill(19),colors[2]);
+      assert.equal(getFill(26),colors[3]);
+      assert.equal(getFill(33),colors[4]);
       done();
     } else{
-      assert.equal(getComputedStyle(svg.querySelectorAll('rect')[5]).fill,"rgb(93, 165, 218)");
-      assert.equal(getComputedStyle(svg.querySelectorAll('rect')[12]).fill,"rgb(250, 164, 58)");
-      assert.equal(getComputedStyle(svg.querySelectorAll('rect')[19]).fill,"rgb(96, 189, 104)");
-      assert.equal(getComputedStyle(svg.querySelectorAll('rect')[26]).fill,"rgb(241, 124, 176)");
-      assert.equal(getComputedStyle(svg.querySelectorAll('rect')[33]).fill,"rgb(178, 145, 47)");
+      assert.equal(getFill(5), colors[0]);
+      assert.equal(getFill(12),colors[1]);
+      assert.equal(getFill(19),colors[2]);
+      assert.equal(getFill(26),colors[3]);
+      assert.equal(getFill(33),colors[4]);
       done();
     }
  });
@@ -129,8 +166,73 @@
    assert.isTrue(rect[3].className.baseVal.indexOf('legend-box') !== -1);
    assert.isTrue(rect[4].className.baseVal.indexOf('legend-box') !== -1);
    done();
-
  });
+
+ test('fixture5 colors should match applied CSS custom properties', function(done) {
+   var fixture = document.getElementById("fixture5");
+   var svg = fixture.querySelector('svg');
+   var rect = svg.querySelectorAll('rect');
+   var is_firechrome = (navigator.userAgent.toLowerCase().indexOf('chrome') > -1 ||
+   navigator.userAgent.toLowerCase().indexOf('firefox') > -1) && navigator.userAgent.toLowerCase().indexOf('edge') === -1;
+
+   // Normalizes RGB colors by stripping all whitespaces
+   var normalizeRgb = function(rgbString) { return rgbString.toString().replace(/\s+/g, '') };
+
+   // Get normalized RGB fill from `svg.querySelectorAll('rect')` at `num` index
+   var getFill = function(num) { return normalizeRgb(getComputedStyle(rect[num]).fill) };
+
+   // Just copy and pasting the RGB values from above into strings to test that
+   // the colors the user provides are actually provided, not just that the
+   // the internal `_getColor` method returns what it shoudl
+   var colors = [
+    normalizeRgb('rgb(1,2,3)'),
+    normalizeRgb('rgb(4,5,6)'),
+    normalizeRgb('rgb(7,8,9)'),
+    normalizeRgb('rgb(10,11,12)'),
+    normalizeRgb('rgb(255,255,0)')
+   ];
+
+   assert.equal(getFill(5), colors[0]);
+   assert.equal(getFill(12),colors[1]);
+   assert.equal(getFill(19),colors[2]);
+   assert.equal(getFill(26),colors[3]);
+   assert.equal(getFill(33),colors[4]);
+   done();
+ });
+
+ test('fixture6 attribute colors override applied CSS custom properties', function(done) {
+   var fixture = document.getElementById("fixture6");
+   var svg = fixture.querySelector('svg');
+   var rect = svg.querySelectorAll('rect');
+   var is_firechrome = (navigator.userAgent.toLowerCase().indexOf('chrome') > -1 ||
+   navigator.userAgent.toLowerCase().indexOf('firefox') > -1) && navigator.userAgent.toLowerCase().indexOf('edge') === -1;
+
+   // Normalizes RGB colors by stripping all whitespaces
+   var normalizeRgb = function(rgbString) { return rgbString.toString().replace(/\s+/g, '') };
+
+   // Get normalized RGB fill from `svg.querySelectorAll('rect')` at `num` index
+   var getFill = function(num) { return normalizeRgb(getComputedStyle(rect[num]).fill) };
+
+   // Just copy and pasting the RGB values from above into strings to test that
+   // the colors the user provides are actually provided, not just that the
+   // the internal `_getColor` method returns what it shoudl
+   var colors = [
+    normalizeRgb(fixture._colorHexToRgb('#aaa')),
+    normalizeRgb(fixture._colorHexToRgb('#bbb')),
+    normalizeRgb(fixture._colorHexToRgb('#ccc')),
+    normalizeRgb(fixture._colorHexToRgb('#ddd')),
+    normalizeRgb(fixture._colorHexToRgb('#eee'))
+   ];
+
+   assert.equal(getFill(5), colors[0]);
+   assert.equal(getFill(12),colors[1]);
+   assert.equal(getFill(19),colors[2]);
+   assert.equal(getFill(26),colors[3]);
+   assert.equal(getFill(33),colors[4]);
+   done();
+ });
+
+
 
  test('fixture4 SVG element has assigned width', function(done) {
    var fixture = document.getElementById("fixture4");
