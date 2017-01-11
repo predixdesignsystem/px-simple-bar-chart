@@ -1,3 +1,7 @@
+v1.8.5
+==================
+* changing ghp.sh to account for Alpha releases
+
 v1.8.4
 =================
 * Update tests to cover new theming cases
