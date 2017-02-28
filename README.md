@@ -1,6 +1,6 @@
 #Px-Simple-Bar-Chart [![Build Status](https://travis-ci.org/PredixDev/px-simple-bar-chart.svg?branch=master)](https://travis-ci.org/PredixDev/px-simple-bar-chart)
 
-[![px-simple-bar-chart demo](https://predixdev.github.io/px-simple-bar-chart/px-simple-bar-chart/px-simple-bar-chart.png)](https://github.com/PredixDev/px-simple-bar-chart)
+[![px-simple-bar-chart demo](px-simple-bar-chart.png?raw=true)](https://predixdev.github.io/px-simple-bar-chart/px-simple-bar-chart)
 
 ## Overview
 
@@ -47,32 +47,7 @@ Finally, use the component in your application:
 <br />
 <hr />
 
-## documentation
-
-Due to a bug in auto-documenting Attributes specified in Behaviors, we are listing the following attributes here, and will move them into the auto documentation API when the bug is fixed:
-
-### Attributes
-
-#### width
-
-Define the target pixel width  of the chart component. The default settings are 283.
-
-```html
-<px-simple-bar-chart
-    ...
-    width="370">
-</px-simple-bar-chart>
-```
-#### height
-
-Define the target pixel height of the chart component. The default settings are 150.
-
-```html
-<px-simple-bar-chart
-    ...
-    height="230">
-</px-simple-bar-chart>
-```
+## Documentation
 
 Read the full API and view the demo [here](https://predixdev.github.io/px-simple-bar-chart/).
 
