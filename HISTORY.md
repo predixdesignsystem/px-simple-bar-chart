@@ -1,3 +1,7 @@
+v1.9.1
+==================
+* fixed unit tests
+
 v1.9.0
 ==================
 * changed legend logic per #9
