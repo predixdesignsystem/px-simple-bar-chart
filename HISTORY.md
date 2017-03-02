@@ -1,3 +1,7 @@
+v1.9.0
+==================
+* changed legend logic per #9
+
 v1.8.8
 ==================
 * updated to new demo using px-demo

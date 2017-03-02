@@ -370,8 +370,8 @@ The following theme would be incorrect because it has a gap. All series in your 
         },
 
         _requireLegend: function() {
-            // legend is required if any of the
-            return this.chartData.length > 1;
+            // legend is required if legend labels are supplied, otherwise omitted
+            return this.legendLabels.length > 0;
         },
 
         _getMax: function() {

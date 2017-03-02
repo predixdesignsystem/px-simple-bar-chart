@@ -46,7 +46,7 @@
       <!-- Component ---------------------------------------------------------->
       <px-demo-component class="flex__item flex__item--msfix">
 
-        <px-simple-bar-chart 
+        <px-simple-bar-chart
             chart-data="{{props.chartData.value}}"
             width="{{props.width.value}}"
             height="{{props.height.value}}"
@@ -80,7 +80,7 @@
 
     properties: {
 
-      
+
       props: {
         type: Object,
         value: function(){ return this.demoProps; }
@@ -90,13 +90,13 @@
         type: Array,
         value: function(){
           return [
-            
 
-            { 
+
+            {
               configName: "One Series",
-              configReset: true 
+              configReset: true
             },
-            { 
+            {
               configName: "Multi Series",
               width : '500',
               height : '350',
@@ -151,7 +151,7 @@
 
       legendLabels: {
         type: Array,
-        defaultValue: ["A", "B", "C", "D",],
+        defaultValue: [],
         inputType: 'code:JSON'
       },
 

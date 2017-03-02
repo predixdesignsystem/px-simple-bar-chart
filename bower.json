@@ -1,6 +1,6 @@
 {
   "name": "px-simple-bar-chart",
-  "version": "1.8.8",
+  "version": "1.9.0",
   "main": [
     "px-simple-bar-chart.html"
   ],
