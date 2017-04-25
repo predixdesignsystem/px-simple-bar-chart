@@ -5,6 +5,7 @@
     "px-simple-bar-chart.html"
   ],
   "ignore": [
+    "*.enc",
     ".*",
     "npm-debug.log",
     "gulpfile.js",
