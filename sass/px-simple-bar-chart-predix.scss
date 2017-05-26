@@ -25,35 +25,35 @@ common/abstract rules go in px-simple-bar-chart-sketch.scss, not in this file.
 @import 'px-simple-bar-chart-sketch.scss';
 
 .bar-chart-bottom-line {
-    stroke: $gray9;
+    stroke: $gray16;
 }
 
 .bar-color-0 {
-    fill: $dv-basic-blue;
+    fill: $blue5;
 }
 .bar-color-1 {
-    fill: $dv-basic-orange;
+    fill: $orange5;
 }
 .bar-color-2 {
-    fill: $dv-basic-green;
+    fill: $green5;
 }
 .bar-color-3 {
-    fill: $dv-basic-pink;
+    fill: $pink4;
 }
 .bar-color-4 {
-    fill: $dv-basic-brown;
+    fill: $brown6;
 }
 .bar-color-5 {
-    fill: $dv-basic-purple;
+    fill: $purple4;
 }
 .bar-color-6 {
-    fill: $dv-basic-yellow;
+    fill: $yellow5;
 }
 .bar-color-7 {
-    fill: $dv-basic-red;
+    fill: $red6;
 }
 .bar-color-8 {
-    fill: $dv-basic-gray;
+    fill: $neutral-gray8;
 }
 
 .legend-text {
