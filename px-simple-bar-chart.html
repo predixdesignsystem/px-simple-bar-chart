@@ -4,13 +4,7 @@
 
 <!--
 
-Use this component to visualize a series or multiple series of numeric values as a bar chart or stacked bar chart. Each series is represented by a sequence of horizontally aligned rectangle bars, the height of each proportionally representing a value. If multiple series are passed to the component then a stacked sequence of rectangle bars will be drawn using a different color to represent each series and a legend to identify them will be drawn above the bars.
-
-The bar colors and legend labels are configurable. The width and height of the component are also configurable. We recommend viewing the demo.html page to become aware of the configuration possibilities. We also recommend using the default settings as they are designed for proper performance.
-
-This chart relies on D3 version 3.
-
-##### Usage
+### Usage
 
     <px-simple-bar-chart chart-data="[ [1,2,3] ]">
     </px-simple-bar-chart>
@@ -22,12 +16,11 @@ This chart relies on D3 version 3.
 
 The following custom properties are available for styling.
 
-Custom property | Description | Default
-----------------|-------------|----------
-`--px-simple-bar-chart-text-color` | The text color of the legend text | `$black`
-`--px-simple-bar-chart-background-color` | The backgorund color of the chart | `$white`
-`--px-simple-bar-chart-background-color` | The backgorund color of the chart | `$white`
-`--px-vis-series-color-[n]` | A series of color values to loop through when coloring the chart (see below) | n/a
+Custom property | Description
+----------------|-------------
+`--px-simple-bar-chart-text-color` | The text color of the legend text
+`--px-simple-bar-chart-background-color` | The background color of the chart
+`--px-vis-series-color-[n]` | A series of color values to loop through when coloring the chart (see below)
 
 ### Styling series colors
 
@@ -50,7 +43,7 @@ A few things to note:
 <ul>
   <li>If you provide more data series than available series colors, the element will loop through available colors starting at the beginning.</li>
   <li>If you do not specify any style variables, a default series of data visualization colors will be applied.</li>
-  <li>If you set the `colors` attribute, your style variables will be overriden and ignored.</li>
+  <li>If you set the `colors` attribute, your style variables will be overridden and ignored.</li>
   <li>There cannot be gaps in the sequential numbers you provide. Evaluation of the colors will end at the last sequential number. (See example below.)</li>
 </ul>
 

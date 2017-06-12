@@ -1,0 +1,57 @@
+/*
+ * Copyright (c) 2014 GE Global Research. All rights reserved.
+ *
+ * The copyright to the computer software herein is the property of
+ * GE Global Research. The software may be used and/or copied only
+ * with the written permission of GE Global Research or in accordance
+ * with the terms and conditions stipulated in the agreement/contract
+ * under which the software has been supplied.
+ */
+
+// Settings
+
+.bar {
+  shape-rendering: crispEdges;
+}
+.px-simple-bar-chart-svg {
+    background: var(--px-simple-bar-chart-background-color, white);
+    margin: 0;
+}
+.legend-text {
+    font-family: sans-serif;
+    font-size: 12px;
+    color: var(--px-simple-bar-chart-text-color, black);
+    fill: var(--px-simple-bar-chart-text-color, black);
+    font-family: "GE Inspira Sans", sans-serif;
+}
+.bar-chart-bottom-line {
+    stroke: var(--px-simple-bar-chart-axis-color, black);
+}
+
+.bar-color-0 {
+    fill: blue;
+}
+.bar-color-1 {
+    fill: orange;
+}
+.bar-color-2 {
+    fill: green;
+}
+.bar-color-3 {
+    fill: pink;
+}
+.bar-color-4 {
+    fill: brown;
+}
+.bar-color-5 {
+    fill: purple;
+}
+.bar-color-6 {
+    fill: yellow;
+}
+.bar-color-7 {
+    fill: red;
+}
+.bar-color-8 {
+    fill: gray;
+}
