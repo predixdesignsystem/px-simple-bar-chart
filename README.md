@@ -4,7 +4,7 @@
 
 Px-simple-bar-chart is a Predix UI component used to visualize a series or multiple series of numeric values as a bar chart or stacked bar chart. Each series is represented by a sequence of horizontally aligned rectangle bars, the height of each proportionally representing a value. If multiple series are passed to the component then a stacked sequence of rectangle bars will be drawn using a different color to represent each series and a legend to identify them will be drawn above the bars.
 
-The bar colors and legend labels are configurable. The width and height of the component are also configurable. We recommend viewing the demo.html page to see the different the configuration possibilities. We also recommend using the default settings as they are designed for proper performance.
+The bar colors and legend labels are configurable. The width and height of the component are also configurable. We recommend viewing the demo page to see all the various configuration possibilities. We also recommend using the default settings as they are designed for proper performance.
 
 ## Usage
 
