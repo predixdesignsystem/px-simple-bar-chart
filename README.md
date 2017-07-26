@@ -2,7 +2,7 @@
 
 ## Overview
 
-Px-simple-bar-chart is a Predix UI component used to visualize a series or multiple series of numeric values as a bar chart or stacked bar chart. Each series is represented by a sequence of horizontally aligned rectangle bars, the height of each proportionally representing a value. If multiple series are passed to the component then a stacked sequence of rectangle bars will be drawn using a different color to represent each series and a legend to identify them will be drawn above the bars.
+`Px-simple-bar-chart` is a Predix UI component used to visualize a series or multiple series of numeric values as a bar chart or stacked bar chart. Each series is represented by a sequence of horizontally aligned rectangle bars, the height of each proportionally representing a value. If multiple series are passed to the component then a stacked sequence of rectangle bars will be drawn using a different color to represent each series and a legend to identify them will be drawn above the bars.
 
 The bar colors and legend labels are configurable. The width and height of the component are also configurable. We recommend viewing the demo page to see all the various configuration possibilities. We also recommend using the default settings as they are designed for proper performance.
 
@@ -14,17 +14,17 @@ The bar colors and legend labels are configurable. The width and height of the c
 3. bower
 4. [webcomponents-lite.js polyfill](https://github.com/webcomponents/webcomponentsjs)
 
-Node, npm and bower are necessary to install the component and dependencies. webcomponents.js adds support for web components and custom elements to your application.
+Node, npm, and bower are necessary to install the component and dependencies. webcomponents.js adds support for web components and custom elements to your application.
 
 ### Getting Started
 
-First, install the component via bower on the command line.
+First, install the component via bower on the command line:
 
 ```
 bower install px-simple-bar-chart --save
 ```
 
-Second, import the component to your application with the following tag in your head.
+Second, import the component in your application with the following tag in your head:
 
 ```
 <link rel="import" href="/bower_components/px-simple-bar-chart/px-simple-bar-chart.html"/>
