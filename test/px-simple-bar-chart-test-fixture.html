@@ -14,14 +14,14 @@
   <body>
     <custom-style>
       <style include="px-theme-styles" is="custom-style">
-        :root #fixture5 {
+        #chart5 {
           --px-vis-series-color-0: rgb(1,2,3);
           --px-vis-series-color-1: rgb(4,5,6);
           --px-vis-series-color-2: rgb(7,8,9);
           --px-vis-series-color-3: rgb(10,11,12);
           --px-vis-series-color-4: rgb(255,255,0);
         }
-        :root #fixture6 {
+        #chart6 {
           --px-vis-series-color-0: rgb(1,2,3);
           --px-vis-series-color-1: rgb(4,5,6);
           --px-vis-series-color-2: rgb(7,8,9);
@@ -46,26 +46,26 @@
     <test-fixture id="fixture3">
       <template>
         <div id="fixture_dimensions" style="width:300px; height:200px;">
-          <px-simple-bar-chart height="auto" width="auto">&hearts;</px-simple-bar-chart>
+          <px-simple-bar-chart id="chart3" height="auto" width="auto"></px-simple-bar-chart>
         </div>
       </template>
     </test-fixture>
 
     <test-fixture id="fixture4">
       <template>
-        <px-simple-bar-chart legend-labels='["A","B","C","D","E"]'>&hearts;</px-simple-bar-chart>
+        <px-simple-bar-chart legend-labels='["A","B","C","D","E"]'></px-simple-bar-chart>
       </template>
     </test-fixture>
 
     <test-fixture id="fixture5">
       <template>
-          <px-simple-bar-chart>&hearts;</px-simple-bar-chart>
+          <px-simple-bar-chart id="chart5"></px-simple-bar-chart>
       </template>
     </test-fixture>
 
     <test-fixture id="fixture6">
       <template>
-          <px-simple-bar-chart colors='["#aaa","#bbb","#ccc","#ddd","#eee"]'>&hearts;</px-simple-bar-chart>
+          <px-simple-bar-chart id="chart6" colors='["#aaa","#bbb","#ccc","#ddd","#eee"]'></px-simple-bar-chart>
       </template>
     </test-fixture>
 

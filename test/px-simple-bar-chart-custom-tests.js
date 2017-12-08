@@ -1,33 +1,16 @@
-// This is the wrapper for custom tests, called upon web components ready state
-function runCustomTests() {
+suite('Custom Automation Tests for px-simple-bar-chart', function() {
+  let normalizeRgb, getFill;
 
-  // This is the placeholder suite to place custom tests in
-  // Use testCase(options) for a more convenient setup of the test cases
-  suite('Custom Automation Tests for px-simple-bar-chart', function() {
+  ////////////////////////////////////////////////////////////////////////////
+  /// SUITE SETUP
+  ////////////////////////////////////////////////////////////////////////////
 
-    ////////////////////////////////////////////////////////////////////////////
-    /// SUITE SETUP
-    ////////////////////////////////////////////////////////////////////////////
-
-    /**
-     * Normalizes RGB colors by stripping all whitespaces
-     *
-     * @param  {String} rgbString - An RGB value like, ex: "rgb(1, 2, 3)"
-     * @return {String} - The RGB value with all spaces removed, ex: "rgb(1,2,3)"
-     */
-    function normalizeRgb(rgbString) {
+  suiteSetup(function() {
+    normalizeRgb = function(rgbString) {
       return rgbString.toString().replace(/\s+/g, '');
     };
 
-    /**
-     * Get normalized RGB fill from a rect found by `svg.querySelectorAll('rect')`
-     * at `num` index.
-     *
-     * @param  {Node} rect - A rectangle found with method like `svg.querySelectorAll('rect')`
-     * @param  {Number} num - Index to search
-     * @return {String} - An RGB value, ex: "rgb(1,2,3)"
-     */
-    function getFill(rect, num) {
+    getFill = function(rect, num) {
       var fill = getComputedStyle(rect[num]).fill;
 
       if (this._colorHexToRgb && (typeof this._colorHexToRgb === "function")) {
@@ -39,83 +22,84 @@ function runCustomTests() {
 
       return normalizeRgb(fill);
     };
+  });
 
-    suiteSetup(function(done){
-      // Get fixures in DOM for use in tests
-      var fixture1 = document.getElementById("fixture1");
-      var fixture2 = document.getElementById("fixture2");
-      var fixture3 = document.getElementById("fixture3");
-      var fixture4 = document.getElementById("fixture4");
-      var fixture5 = document.getElementById("fixture5");
-      var fixture6 = document.getElementById("fixture6");
+  ////////////////////////////////////////////////////////////////////////////
+  /// FIXTURE 1
+  ////////////////////////////////////////////////////////////////////////////
 
-      // We wait 2000ms before running any tests to make sure that all fixtures
-      // have attached themselves AND finished drawing their charts (which
-      // may take a little bit after attached to do SVG operations)
-      setTimeout(function(){ done(); }, 2000);
+  suite('Fixture 1', function(done){
+    let fixture1;
+
+    setup(function(done){
+      fixture1 = fixture("fixture1");
+      flush(()=>{
+        setTimeout(function() {
+          done();
+        }, 1000);
+      });
     });
 
-    ////////////////////////////////////////////////////////////////////////////
-    /// FIXTURE 1
-    ////////////////////////////////////////////////////////////////////////////
-
-    test('[fixture1] Chart has been drawn and is visible', function(done) {
-      assert.equal(getComputedStyle(fixture1.querySelector('rect')).visibility,"visible");
+    test('Chart has been drawn and is correct size', function(done) {
+      var rect = Polymer.dom(fixture1.root).querySelector('rect'),
+          svg = Polymer.dom(fixture1.root).querySelector('svg');
+      assert.equal(getComputedStyle(rect).visibility,"visible");
+      assert.equal(getComputedStyle(svg).height,"150px");
+      assert.equal(getComputedStyle(svg).width,"285px");
+      assert.equal(getComputedStyle(svg).height,"150px");
       done();
     });
 
-    test('[fixture1] Chart has the correct height (150px)', function(done) {
-      assert.equal(getComputedStyle(fixture1.querySelector('svg')).height,"150px");
+  });
+
+  ////////////////////////////////////////////////////////////////////////////
+  /// FIXTURE 2
+  ////////////////////////////////////////////////////////////////////////////
+
+  suite('Fixture 2', function(done) {
+    let fixture2;
+
+    setup(function(done){
+      fixture2 = fixture("fixture2");
+      flush(()=>{
+        setTimeout(function() {
+          done();
+        }, 1000);
+      });
+    });
+
+    test('Chart has the correct height (200px)', function(done) {
+      assert.equal(getComputedStyle(Polymer.dom(fixture2.root).querySelector('svg')).height,"200px");
       done();
     });
 
-    test('[fixture1] SVG element has the default width (285px)', function(done) {
-      assert.equal(getComputedStyle(fixture1.querySelector('svg')).width,"285px");
+  });
+
+  ////////////////////////////////////////////////////////////////////////////
+  /// FIXTURE 3
+  ////////////////////////////////////////////////////////////////////////////
+
+  suite('Fixture 3', function(done) {
+    let fixture3;
+
+    setup(function(done){
+      fixture3 = fixture("fixture3");
+      chart3 = fixture3.querySelector('#chart3');
+      flush(()=>{
+        setTimeout(function() {
+          done();
+        }, 1000);
+      });
+    });
+
+    test('SVG element has assigned width', function(done) {
+      assert.equal(getComputedStyle(Polymer.dom(chart3.root).querySelector('svg')).width,"299px");
+      assert.equal(getComputedStyle(Polymer.dom(chart3.root).querySelector('svg')).height,"200px");
       done();
     });
 
-    test('[fixture1] SVG element has default height (150px)', function(done) {
-      assert.equal(getComputedStyle(fixture1.querySelector('svg')).height,"150px");
-      done();
-    });
-
-    ////////////////////////////////////////////////////////////////////////////
-    /// FIXTURE 2
-    ////////////////////////////////////////////////////////////////////////////
-
-    test('[fixture2] Chart has the correct height (200px)', function(done) {
-      assert.equal(getComputedStyle(fixture2.querySelector('svg')).height,"200px");
-      done();
-    });
-
-    ////////////////////////////////////////////////////////////////////////////
-    /// FIXTURE 3
-    ////////////////////////////////////////////////////////////////////////////
-
-    test('[fixture3] SVG element has assigned width', function(done) {
-      assert.equal(getComputedStyle(fixture3.querySelector('svg')).width,"299px");
-      done();
-    });
-
-    test('[fixture3] SVG element has assigned height', function(done) {
-      assert.equal(getComputedStyle(fixture3.querySelector('svg')).height,"200px");
-      done();
-    });
-
-    test('[fixture3] Chart resizes to correct height in fixed-size container', function(done) {
+    test('Chart resizes to correct height in fixed-size container', function(done) {
       document.getElementById('fixture_dimensions').style.height = '270px';
-      window.dispatchEvent(new Event('resize'));
-
-      // We wait 1000ms after firing the window-scope resize event to give the
-      // chart time to redraw. The chart *should* fire a redrawn event that we
-      // listen to and test the result of... but it doesn't for now.
-      setTimeout(function(){
-        assert.equal(getComputedStyle(fixture3.querySelector('svg')).height,"270px");
-        done();
-      }, 1000);
-    });
-
-    test('[fixture3] Chart resizes to correct width in fixed-size container', function(done) {
       document.getElementById('fixture_dimensions').style.width = '400px';
       window.dispatchEvent(new Event('resize'));
 
@@ -123,24 +107,39 @@ function runCustomTests() {
       // chart time to redraw. The chart *should* fire a redrawn event that we
       // listen to and test the result of... but it doesn't for now.
       setTimeout(function(){
-        assert.equal(getComputedStyle(fixture3.querySelector('svg')).width,"403px");
+        assert.equal(getComputedStyle(Polymer.dom(chart3.root).querySelector('svg')).height,"270px");
+        assert.equal(getComputedStyle(Polymer.dom(chart3.root).querySelector('svg')).width,"403px");
         done();
       }, 1000);
     });
 
-    ////////////////////////////////////////////////////////////////////////////
-    /// FIXTURE 4
-    ////////////////////////////////////////////////////////////////////////////
+  });
 
-    test('[fixture4] Number of rectangles drawn the chart is equal to the number of data items passed in', function(done) {
-      var svg = fixture4.querySelector('svg');
+  ////////////////////////////////////////////////////////////////////////////
+  /// FIXTURE 4
+  ////////////////////////////////////////////////////////////////////////////
+
+  suite('Fixture 4', function(done) {
+    let fixture4;
+
+    setup(function(done){
+      fixture4 = fixture("fixture4");
+      flush(()=>{
+        setTimeout(function() {
+          done();
+        }, 1000);
+      });
+    });
+
+    test('Number of rectangles drawn the chart is equal to the number of data items passed in', function(done) {
+      var svg = Polymer.dom(fixture4.root).querySelector('svg');
 
       assert.equal(svg.querySelectorAll('rect').length,"40");
       done();
     });
 
-    test('[fixture4] Chart colors match default data vis colors', function(done) {
-      var svg = fixture4.querySelector('svg');
+    test('Chart colors match default data vis colors', function(done) {
+      var svg = Polymer.dom(fixture4.root).querySelector('svg');
       var rect = svg.querySelectorAll('rect');
       var getFillBound = getFill.bind(fixture5);
 
@@ -161,8 +160,8 @@ function runCustomTests() {
       done();
     });
 
-    test('[fixture4] Legend was drawn', function(done) {
-      var svg = fixture4.querySelector('svg');
+    test('Legend was drawn', function(done) {
+      var svg = Polymer.dom(fixture4.root).querySelector('svg');
       var rect = svg.querySelectorAll('rect');
 
       assert.isTrue(rect[0].className.baseVal.indexOf('legend-box') !== -1);
@@ -173,18 +172,32 @@ function runCustomTests() {
       done();
     });
 
-    ////////////////////////////////////////////////////////////////////////////
-    /// FIXTURE 5
-    ////////////////////////////////////////////////////////////////////////////
+  });
 
-    test('[fixture5] Chart colors match applied CSS custom properties', function(done) {
-      var svg = fixture5.querySelector('svg');
+  ////////////////////////////////////////////////////////////////////////////
+  /// FIXTURE 5
+  ////////////////////////////////////////////////////////////////////////////
+
+  suite('Fixture 5', function(done) {
+    let fixture5;
+
+    setup(function(done){
+      fixture5 = fixture("fixture5");
+      flush(()=>{
+        setTimeout(function() {
+          done();
+        }, 1000);
+      });
+    });
+
+    test('Chart colors match applied CSS custom properties', function(done) {
+      var svg = Polymer.dom(fixture5.root).querySelector('svg');
       var rect = svg.querySelectorAll('rect');
       var getFillBound = getFill.bind(fixture5);
 
       // Just copy and pasting the RGB values from above into strings to test that
       // the colors the user provides are actually provided, not just that the
-      // the internal `_getColor` method returns what it shoudl
+      // the internal `_getColor` method returns what it should
       var colors = [
         normalizeRgb('rgb(1,2,3)'),
         normalizeRgb('rgb(4,5,6)'),
@@ -201,18 +214,32 @@ function runCustomTests() {
       done();
     });
 
-    ////////////////////////////////////////////////////////////////////////////
-    /// FIXTURE 6
-    ////////////////////////////////////////////////////////////////////////////
+  });
 
-    test('[fixture6] Chart colors assigned by attribute override applied CSS custom properties', function(done) {
-      var svg = fixture6.querySelector('svg');
+  ////////////////////////////////////////////////////////////////////////////
+  /// FIXTURE 6
+  ////////////////////////////////////////////////////////////////////////////
+
+  suite('Fixture 6', function(done) {
+    let fixture6;
+
+    setup(function(done){
+      fixture6 = fixture("fixture6");
+      flush(()=>{
+        setTimeout(function() {
+          done();
+        }, 1000);
+      });
+    });
+
+    test('Chart colors assigned by attribute override applied CSS custom properties', function(done) {
+      var svg = Polymer.dom(fixture6.root).querySelector('svg');
       var rect = svg.querySelectorAll('rect');
       var getFillBound = getFill.bind(fixture6);
 
       // Just copy and pasting the RGB values from above into strings to test that
       // the colors the user provides are actually provided, not just that the
-      // the internal `_getColor` method returns what it shoudl
+      // the internal `_getColor` method returns what it should
       var colors = [
         normalizeRgb(fixture6._colorHexToRgb('#aaa')),
         normalizeRgb(fixture6._colorHexToRgb('#bbb')),
@@ -230,4 +257,5 @@ function runCustomTests() {
     });
 
   });
-};
+
+});
