@@ -34,6 +34,6 @@
     }
   },
   "suites": [
-    "test/px-simple-bar-chart-test-fixture.html"
+    "test/index.html"
   ]
 }
