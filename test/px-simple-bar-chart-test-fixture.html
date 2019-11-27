@@ -20,15 +20,26 @@ limitations under the License.
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Web Component Test : Fixture for px-simple-bar-chart</title>
-    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-    <script src="../../web-component-tester/browser.js"></script>
-    <link rel="import" href="../px-simple-bar-chart.html" />
-    <link rel="import" href="../../px-theme/px-theme-styles.html">
-    <script src="px-simple-bar-chart-custom-tests.js"></script>
+    <script src="../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+    <script src="../../wct-browser-legacy/browser.js"></script>
+    <script type="module" src="../px-simple-bar-chart.js"></script>
+    <script type="module" src="../../px-theme/px-theme-styles.js"></script>
+    <script src="./px-simple-bar-chart-custom-tests.js"></script>
   </head>
 
   <body>
-    <custom-style>
+    <!-- FIXME(polymer-modulizer):
+        These imperative modules that innerHTML your HTML are
+        a hacky way to be sure that any mixins in included style
+        modules are ready before any elements that reference them are
+        instantiated, otherwise the CSS @apply mixin polyfill won't be
+        able to expand the underlying CSS custom properties.
+        See: https://github.com/Polymer/polymer-modulizer/issues/154
+        -->
+    <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<custom-style>
       <style include="px-theme-styles" is="custom-style">
         #chart5 {
           --px-vis-series-color-0: rgb(1,2,3);
@@ -45,45 +56,84 @@ limitations under the License.
           --px-vis-series-color-4: rgb(255,255,0);
         }
       </style>
-    </custom-style>
+    </custom-style>`;
 
-    <test-fixture id="fixture1">
+document.body.appendChild($_documentContainer.content);
+</script>
+
+    <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<test-fixture id="fixture1">
       <template>
         <px-simple-bar-chart chart-data="[ [1,2,3] ]"></px-simple-bar-chart>
       </template>
-    </test-fixture>
+    </test-fixture>`;
 
-    <test-fixture id="fixture2">
+document.body.appendChild($_documentContainer.content);
+</script>
+
+    <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<test-fixture id="fixture2">
       <template>
         <px-simple-bar-chart height="200" chart-data="[ [1,2,3] ]"></px-simple-bar-chart>
       </template>
-    </test-fixture>
+    </test-fixture>`;
 
-    <test-fixture id="fixture3">
+document.body.appendChild($_documentContainer.content);
+</script>
+
+    <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<test-fixture id="fixture3">
       <template>
         <div id="fixture_dimensions" style="width:300px; height:200px;">
           <px-simple-bar-chart id="chart3" height="auto" width="auto"></px-simple-bar-chart>
         </div>
       </template>
-    </test-fixture>
+    </test-fixture>`;
 
-    <test-fixture id="fixture4">
+document.body.appendChild($_documentContainer.content);
+</script>
+
+    <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<test-fixture id="fixture4">
       <template>
-        <px-simple-bar-chart legend-labels='["A","B","C","D","E"]'></px-simple-bar-chart>
+        <px-simple-bar-chart legend-labels="[&quot;A&quot;,&quot;B&quot;,&quot;C&quot;,&quot;D&quot;,&quot;E&quot;]"></px-simple-bar-chart>
       </template>
-    </test-fixture>
+    </test-fixture>`;
 
-    <test-fixture id="fixture5">
+document.body.appendChild($_documentContainer.content);
+</script>
+
+    <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<test-fixture id="fixture5">
       <template>
           <px-simple-bar-chart id="chart5"></px-simple-bar-chart>
       </template>
-    </test-fixture>
+    </test-fixture>`;
 
-    <test-fixture id="fixture6">
+document.body.appendChild($_documentContainer.content);
+</script>
+
+    <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<test-fixture id="fixture6">
       <template>
-          <px-simple-bar-chart id="chart6" colors='["#aaa","#bbb","#ccc","#ddd","#eee"]'></px-simple-bar-chart>
+          <px-simple-bar-chart id="chart6" colors="[&quot;#aaa&quot;,&quot;#bbb&quot;,&quot;#ccc&quot;,&quot;#ddd&quot;,&quot;#eee&quot;]"></px-simple-bar-chart>
       </template>
-    </test-fixture>
+    </test-fixture>`;
+
+document.body.appendChild($_documentContainer.content);
+</script>
 
   </body>
 </html>

@@ -21,50 +21,63 @@ limitations under the License.
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>px-simple-bar-chart Demo</title>
-  <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+  <script src="../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
 
-  <link rel="import" href="../px-theme/px-theme-styles.html">
-  <style include="px-theme-styles" is="custom-style"></style>
+  <script type="module" src="../px-theme/px-theme-styles.js"></script>
+  <!-- FIXME(polymer-modulizer):
+        These imperative modules that innerHTML your HTML are
+        a hacky way to be sure that any mixins in included style
+        modules are ready before any elements that reference them are
+        instantiated, otherwise the CSS @apply mixin polyfill won't be
+        able to expand the underlying CSS custom properties.
+        See: https://github.com/Polymer/polymer-modulizer/issues/154
+        -->
+    <script type="module">
+const $_documentContainer = document.createElement('template');
+$_documentContainer.innerHTML = `<style include="px-theme-styles" is="custom-style"></style>`;
+document.head.appendChild($_documentContainer.content);
+</script>
 
-  <link rel="import" href="px-simple-bar-chart.html" />
+  <script type="module" src="./px-simple-bar-chart.js"></script>
 </head>
 
 <body>
 
-  <template id="just-for-demo" is="dom-bind">
-    <px-simple-bar-chart
-      chart-data="{{chartData}}"
-      width="{{widthProp}}"
-      height="{{heightProp}}"
-      legend-labels="{{legendLabels}}"
-      legend-order="sequential">
+  <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<template id="just-for-demo" is="dom-bind">
+    <px-simple-bar-chart chart-data="{{chartData}}" width="{{widthProp}}" height="{{heightProp}}" legend-labels="{{legendLabels}}" legend-order="sequential">
     </px-simple-bar-chart>
 
-  </template>
-  <script>
-    window.addEventListener('WebComponentsReady', function() {
+  </template>`;
 
-      var template = document.querySelector('template[is=dom-bind]'),
-          chartData = [
-            [102, 80, 63, 127, 102, 77, 57, 71, 106, 78, 129],
-            [103, 55, 54, 103, 89, 56, 74, 52, 67, 110, 93],
-            [128, 119,  71,  74,  98,  87, 114,  67,  67,  62, 104],
-            [92,  64,  88, 121,  61,  55, 115, 110,  78, 129, 119],
-            [102,  83, 106,  58, 102,  62,  58,  67,  75, 113, 120],
-            [68, 129,  94,  58,  53, 117,  96,  87,  97,  70, 108],
-            [109, 109, 104, 104, 121,  86,  97,  51,  73, 100,  74],
-            [112,  57,  53, 122, 128, 120,  56,  94,  72, 110, 102]
-          ],
-          widthProp= "500",
-          heightProp= "350",
-          legendLabels= ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"];
+document.body.appendChild($_documentContainer.content);
+</script>
+  <script type="module">
+import 'px-theme/px-theme-styles.js';
+import './px-simple-bar-chart.js';
 
-          template.chartData = chartData;
-          template.widthProp = widthProp;
-          template.heightProp = heightProp;
-          template.legendLabels = legendLabels;
-    });
-  </script>
+var template = document.querySelector('template[is=dom-bind]'),
+    chartData = [
+      [102, 80, 63, 127, 102, 77, 57, 71, 106, 78, 129],
+      [103, 55, 54, 103, 89, 56, 74, 52, 67, 110, 93],
+      [128, 119,  71,  74,  98,  87, 114,  67,  67,  62, 104],
+      [92,  64,  88, 121,  61,  55, 115, 110,  78, 129, 119],
+      [102,  83, 106,  58, 102,  62,  58,  67,  75, 113, 120],
+      [68, 129,  94,  58,  53, 117,  96,  87,  97,  70, 108],
+      [109, 109, 104, 104, 121,  86,  97,  51,  73, 100,  74],
+      [112,  57,  53, 122, 128, 120,  56,  94,  72, 110, 102]
+    ],
+    widthProp= "500",
+    heightProp= "350",
+    legendLabels= ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"];
+
+template.chartData = chartData;
+template.widthProp = widthProp;
+template.heightProp = heightProp;
+template.legendLabels = legendLabels;
+</script>
 
 </body>
 
